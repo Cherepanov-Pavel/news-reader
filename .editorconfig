@@ -2,10 +2,14 @@
 # https://github.com/Cherepanov-Pavel/shareable-config
 # Version: 1.0.2
 # File may contain override sections, see project README for more details
-node_modules
-.idea
-*.local
+root = true
 
-# nuxt
-.output
-.nuxt
+[*]
+indent_style = tab
+indent_size = tab
+tab_width = 2
+end_of_line = lf
+charset = utf-8
+# set later
+# trim_trailing_whitespace = true
+# insert_final_newline = false

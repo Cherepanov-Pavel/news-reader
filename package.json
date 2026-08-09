@@ -1,20 +1,7 @@
 {
   "name": "news-reader",
   "type": "module",
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "nuxt": "^4.5.2",
-    "vue": "^3.5.40",
-    "vue-router": "^5.2.0"
-  },
-  "devEngines": {
+	"devEngines": {
     "packageManager": {
       "name": "npm",
       "version": "12.0.2"
@@ -24,7 +11,20 @@
       "version": "26.7.0"
     }
   },
-  "allowScripts": {
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+	"allowScripts": {
     "esbuild": true
+  },
+  "dependencies": {
+    "@cherepanov.pavel/shareable-config": "^1.0.2",
+    "nuxt": "^4.5.2",
+    "vue": "^3.5.40",
+    "vue-router": "^5.2.0"
   }
 }
