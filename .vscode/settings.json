@@ -36,7 +36,14 @@
   // ],
 
 	"cSpell.words": [
-			"Cherepanov",
-			"Pavel"
+		"Cherepanov",
+		"Customizer",
+		"Nuxt",
+		"Pavel",
+		"vuejs"
 	],
+
+	// override
+	"editor.renderWhitespace": "selection",
+	"cSpell.language": "en,ru"
 }

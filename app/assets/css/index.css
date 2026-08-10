@@ -1,0 +1,8 @@
+/* stylelint-disable scss/at-rule-no-unknown */
+/* stylelint-disable-next-line scss/load-partial-extension */
+@import "tailwindcss";
+
+@theme {
+  --font-arial: arial, system-ui;
+  --color-primary: #0029ff;
+}

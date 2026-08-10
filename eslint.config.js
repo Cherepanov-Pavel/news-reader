@@ -4,6 +4,7 @@ import {
   tsConfig,
   vueConfig,
 } from '@cherepanov.pavel/shareable-config/tools/eslint-config/index.js';
+import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
 
 const eslintConfig = [
   ...globalConfig,
@@ -21,6 +22,24 @@ export function override() {
   //     'no-dupe-keys': 'off',
   //   },
   // });
+  eslintConfig.push({
+    files: ['**/*.vue'],
+    rules: {
+      'vue/multi-word-component-names': ['error', {
+        ignores: [
+          'Index',
+        ],
+      }],
+    },
+  });
+  eslintConfig.push({
+    files: ['**/*.vue', '**/*.ts', '**/*.js'],
+    rules: {
+      '@stylistic/no-tabs': ['off'],
+    },
+  });
+  eslintConfig.push(...pluginVueA11y.configs['flat/recommended']);
+  // TODO: add errors about empty style/script tags?
 }
 override();
 
