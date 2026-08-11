@@ -13,15 +13,18 @@ const transform: ResolvedOptions['transform'] = (svg) => {
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   modules: [
-    // makes available ~icons/ import
-    ['unplugin-icons/nuxt', {
-      customCollections: {
-        figma: fileSystemIconLoader('app/assets/svg'),
+    [
+      // makes available ~icons/ import
+      'unplugin-icons/nuxt', {
+        customCollections: {
+          figma: fileSystemIconLoader('app/assets/svg'),
+        },
+        transform,
       },
-      transform,
-    }],
+    ],
+    '@pinia/nuxt',
   ],
-  // devtools: { enabled: true },
+  devtools: { enabled: false },
   vite: {
     plugins: [
       tailwindcss(),
