@@ -12,7 +12,7 @@ const newsListItemPubDateFormatted = computed(() => {
 
 <template>
   <article
-    class="flex flex-col gap-5 border border-gray-100 bg-white p-7.5 shadow-sm"
+    class="flex flex-col gap-5 border border-gray-100 bg-white p-7.5 pb-4 shadow-sm"
   >
     <h2
       class="text-lg font-bold leading-5.5 text-primary line-clamp-3 h-16.5 mb-1"
@@ -34,12 +34,12 @@ const newsListItemPubDateFormatted = computed(() => {
     </AppLink>
 
     <footer
-      class="mt-auto flex items-end justify-between pt-4 text-sm text-secondary"
+      class="mt-auto flex items-end justify-between text-sm text-secondary"
     >
       <AppLink
-        href="#"
+        :href="`https://${newsListItem.source}`"
       >
-        www.mos.ru
+        www.{{ newsListItem.source }}
       </AppLink>
 
       <time

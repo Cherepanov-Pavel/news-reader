@@ -1,14 +1,18 @@
 import { XMLParser } from 'fast-xml-parser';
 
 export const defineXmlToJsonHandler = <
-  T extends EventHandlerRequest,
-> (
-  handler: EventHandler<T, Promise<string>>,
-  transform?: (data: Record<string, unknown>) => Record<string, unknown>,
+  R = Record<string, unknown>,
+>(
+  handler: EventHandler<EventHandlerRequest, Promise<string>>,
+  transform?: (data: any) => R,
 ) => {
-  return defineEventHandler<T>(async (event) => {
+  return defineEventHandler(async (event): Promise<R> => {
     const response = await handler(event);
-    const parsed = new XMLParser().parse(response);
-    return transform ? transform(parsed) : parsed;
+    const parsed = new XMLParser({ attributeNamePrefix: '', ignoreAttributes: false }).parse(response);
+    if (!transform) {
+      return parsed as R;
+    }
+
+    return transform(parsed);
   });
 };

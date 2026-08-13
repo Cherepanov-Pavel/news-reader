@@ -8,7 +8,7 @@ const { newsList } = defineProps<Props>();
 
 <template>
   <div
-    class="grid grid-cols-2 gap-4"
+    class="grid grid-cols-2 gap-5"
   >
     <TheNewsListItem
       v-for="newsListItem in newsList"

@@ -28,6 +28,8 @@ export function override() {
       'vue/multi-word-component-names': ['error', {
         ignores: [
           'Index',
+          '[page]',
+          '[...slug]',
         ],
       }],
     },
@@ -36,6 +38,7 @@ export function override() {
     files: ['**/*.vue', '**/*.ts', '**/*.js'],
     rules: {
       '@stylistic/no-tabs': ['off'],
+      '@typescript-eslint/prefer-enum-initializers': ['off'],
     },
   });
   eslintConfig.push(...pluginVueA11y.configs['flat/recommended']);

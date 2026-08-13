@@ -3,7 +3,7 @@
 
 <template>
   <NuxtLink
-    class="mt-4 text-sm underline"
+    class="text-sm underline"
     target="_blank"
   >
     <slot />

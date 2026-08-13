@@ -1,17 +1,16 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
-import { usePagination } from '~/composables/pagination';
+// import { usePagination } from '~/composables/pagination';
 import type { NewsListItem } from '~~/shared/types/api/news';
 
 export const useNewsStore = defineStore('news', () => {
   const newsList = ref<NewsListItem[]>([]);
   function setNewsList(news: NewsListItem[]) {
     newsList.value = news;
-    pagination.resetPage();
+    // pagination.resetPage();
   }
-  const pagination = usePagination(newsList);
+  // const pagination = usePagination(newsList);
 
   return {
     setNewsList,
-    pagination,
+    // pagination,
   };
 });

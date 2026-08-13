@@ -1,11 +1,11 @@
-import type { MosRSSItem } from '~~/server/types/mos-rss';
+import type { LentaRSSItem } from '~~/server/types/lenta-rss';
 import { defineXmlToJsonHandler } from '~~/server/utils/xml';
 
 export default defineXmlToJsonHandler<
-  MosRSSItem[]
+  LentaRSSItem[]
 >(
   async () => {
-    return $fetch<string>('https://www.mos.ru/rss', {
+    return $fetch<string>('https://lenta.ru/rss/news', {
       responseType: 'text',
     });
   },
