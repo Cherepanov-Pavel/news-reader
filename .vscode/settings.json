@@ -41,7 +41,8 @@
 		"lenta",
 		"Nuxt",
 		"Pavel",
-		"vuejs"
+		"vuejs",
+		"vueuse"
 	],
 
 	// override

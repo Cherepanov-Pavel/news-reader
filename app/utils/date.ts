@@ -4,8 +4,6 @@ export const convertDateToFrontendDate = (date: DateConstructorParameter): Front
   const epochMilliseconds = new Date(date).getTime();
   const instant = Temporal.Instant.fromEpochMilliseconds(epochMilliseconds);
 
-  // 3. Преобразуем в нужный нам тип (например, PlainDateTime) и форматируем
-  //    с помощью Intl.DateTimeFormat, как рекомендует Temporal [citation:5][citation:8]
   const plainDateTime = instant.toZonedDateTimeISO(Temporal.Now.timeZoneId()).toPlainDate();
 
   const formatter = new Intl.DateTimeFormat('ru-RU', {

@@ -76,7 +76,7 @@ const pages = computed(() => {
       >
         <NuxtLink
           v-if="page !== '...'"
-          :class="currentPage === page ? 'text-primary' : 'hover:text-primary'"
+          :class="[currentPage === page ? 'text-primary' : 'hover:text-primary']"
           :to="{
             name: `news-list`,
             params: {

@@ -1,30 +1,36 @@
 <script setup lang="ts">
-import { useNewsStore } from '~/stores/news';
+import { FIRST_PAGE } from '#shared/constants/pagination';
 definePageMeta({
   name: 'news-list',
 });
 const route = useRoute();
-
-const page = Number(route.params.page ?? 1);
-if (!Number.isSafeInteger(page) || page < 1) {
+const page = computed(() => {
+  return Number(route.params.page);
+});
+if (!Number.isSafeInteger(page.value) || page.value < 1) {
   await navigateTo({
     name: 'news-list',
     params: {
-      page: 1,
+      page: FIRST_PAGE,
     },
+    query: route.query,
   });
 }
 
 const { data } = await useFetch('/api/rss', {
   query: {
     page,
+    source: computed(() => {
+      return route.query.source;
+    }),
+    search: computed(() => {
+      return route.query.search;
+    }),
   },
 });
-const newsList = data.value?.items ?? [];
-const {
-  setNewsList,
-} = useNewsStore();
-setNewsList(newsList);
+const newsList = computed(() => {
+  return data.value?.items ?? [];
+});
 </script>
 
 <template>

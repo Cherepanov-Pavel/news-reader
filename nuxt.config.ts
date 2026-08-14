@@ -15,7 +15,8 @@ export default defineNuxtConfig({
   modules: [
     [
       // makes available ~icons/ import
-      'unplugin-icons/nuxt', {
+      'unplugin-icons/nuxt',
+      {
         customCollections: {
           figma: fileSystemIconLoader('app/assets/svg'),
         },
@@ -23,6 +24,7 @@ export default defineNuxtConfig({
       },
     ],
     '@pinia/nuxt',
+    '@vueuse/nuxt',
   ],
   devtools: { enabled: false },
   vite: {

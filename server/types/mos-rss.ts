@@ -4,8 +4,8 @@ interface Enclosure {
 }
 
 export interface MosRSSItem {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   link: string;
   pubDate: string;
   enclosure: Enclosure | Enclosure[];

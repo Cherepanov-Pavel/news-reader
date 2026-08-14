@@ -1,6 +1,6 @@
 export interface LentaRSSItem {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   link: string;
   pubDate: string;
   enclosure: {

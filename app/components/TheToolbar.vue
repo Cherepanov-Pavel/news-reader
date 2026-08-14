@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import IconViewCard from '~icons/figma/view-card';
 import IconViewFeed from '~icons/figma/view-feed';
+import { NewsListItemSource } from '~~/shared/types/api/news';
+import { FIRST_PAGE } from '#shared/constants/pagination';
+const route = useRoute();
+
+const sourceLinks = [
+  { label: 'Все' },
+  { label: 'Lenta.ru', source: NewsListItemSource.lenta },
+  { label: 'Mos.ru', source: NewsListItemSource.mos },
+];
 </script>
 
 <template>
@@ -10,24 +19,28 @@ import IconViewFeed from '~icons/figma/view-feed';
     <nav
       class="flex gap-3 text-sm font-bold"
     >
-      <a
-        href="#"
-        class="text-black"
+      <template
+        v-for="{ label, source } in sourceLinks"
+        :key="label"
       >
-        Все
-      </a>
-      <a
-        href="#"
-        class="text-primary"
-      >
-        Lenta.ru
-      </a>
-      <a
-        href="#"
-        class="text-primary"
-      >
-        Mos.ru
-      </a>
+        <NuxtLink
+          :class="{
+            'text-primary': route.query.source !== source,
+          }"
+          :to="{
+            name: `news-list`,
+            params: {
+              page: FIRST_PAGE,
+            },
+            query: {
+              ...route.query,
+              source,
+            },
+          }"
+        >
+          {{ label }}
+        </NuxtLink>
+      </template>
     </nav>
 
     <div

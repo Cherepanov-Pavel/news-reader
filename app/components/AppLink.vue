@@ -4,7 +4,6 @@
 <template>
   <NuxtLink
     class="text-sm underline"
-    target="_blank"
   >
     <slot />
   </NuxtLink>

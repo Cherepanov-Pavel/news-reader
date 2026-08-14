@@ -1,9 +1,18 @@
 <script setup lang="ts">
 import IconMagnifyingGlass from '~icons/figma/magnifying-glass';
+
+
+const model = defineModel<string>({
+  default: '',
+});
 </script>
 
 <template>
-  <AppInput>
+  <AppInput
+    v-model="model"
+    type="search"
+    name="search"
+  >
     <template
       #icon
     >
@@ -13,6 +22,3 @@ import IconMagnifyingGlass from '~icons/figma/magnifying-glass';
     </template>
   </AppInput>
 </template>
-
-<style scoped lang="scss">
-</style>

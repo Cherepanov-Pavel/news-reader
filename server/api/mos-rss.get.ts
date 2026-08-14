@@ -5,7 +5,7 @@ export default defineXmlToJsonHandler<
   MosRSSItem[]
 >(
   async () => {
-    return $fetch<string>('https://www.mos.ru/rss', {
+    return $fetch<string>('https://mos.ru/rss', {
       responseType: 'text',
     });
   },

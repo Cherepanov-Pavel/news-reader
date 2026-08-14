@@ -5,8 +5,8 @@ import { NewsListItemSource, type NewsListItem } from '~~/shared/types/api/news'
 export function mapMosRssItemToNewsListItem(item: MosRSSItem): NewsListItem {
   const enclosure = Array.isArray(item.enclosure) ? item.enclosure : [item.enclosure];
   return {
-    title: item.title,
-    description: item.description,
+    title: item.title ?? '',
+    description: item.description ?? '',
     link: item.link,
     pubDate: item.pubDate,
     enclosure: {
@@ -18,8 +18,8 @@ export function mapMosRssItemToNewsListItem(item: MosRSSItem): NewsListItem {
 
 export function mapLentaRssItemToNewsListItem(item: LentaRSSItem): NewsListItem {
   return {
-    title: item.title,
-    description: item.description,
+    title: item.title ?? '',
+    description: item.description ?? '',
     link: item.link,
     pubDate: item.pubDate,
     enclosure: {
