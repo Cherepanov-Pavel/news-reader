@@ -50,9 +50,9 @@ const newsList = computed(() => {
 </script>
 
 <template>
-  <TheHeader />
+  <NewsListHeader />
   <AppDivider />
-  <TheToolbar
+  <NewsListToolbar
     class="mb-7"
   />
   <template
