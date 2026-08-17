@@ -21,7 +21,7 @@ const props = defineProps<Props>();
       :href="href || undefined"
       :target="isExternal ? '_blank' : undefined"
       :rel="rel || undefined"
-      @click="!isExternal ? navigate : undefined"
+      @click="(event) => !isExternal && navigate(event)"
     >
       <slot />
     </a>
