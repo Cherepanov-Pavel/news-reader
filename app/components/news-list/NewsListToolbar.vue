@@ -66,7 +66,7 @@ const viewModeBtns = [
         :key="mode"
       >
         <AppButton
-          class="w-4 h-4"
+          class="size-4"
           :class="[
             isMounted && viewMode === mode ? 'text-primary' : 'text-secondary',
           ]"
@@ -80,6 +80,3 @@ const viewModeBtns = [
     </div>
   </div>
 </template>
-
-<style scoped lang="scss">
-</style>

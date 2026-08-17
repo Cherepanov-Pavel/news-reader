@@ -3,7 +3,7 @@
     class="min-h-screen bg-[#FBFBFB] font-arial"
   >
     <main
-      class="mx-auto max-w-[1060px] pt-9 px-5"
+      class="mx-auto max-w-265 px-5 pt-9"
     >
       <NuxtPage />
     </main>

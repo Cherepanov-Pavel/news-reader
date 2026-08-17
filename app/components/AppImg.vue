@@ -12,6 +12,3 @@ const { src, alt } = defineProps<Props>();
     :alt
   >
 </template>
-
-<style scoped lang="scss">
-</style>

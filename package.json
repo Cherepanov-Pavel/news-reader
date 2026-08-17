@@ -16,7 +16,14 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "run-p -lc lint:js lint:css lint:types",
+    "lint:fix": "run-p -lc lint:js:fix lint:css:fix lint:types",
+    "lint:js": "eslint",
+    "lint:js:fix": "npm run lint:js -- --fix",
+    "lint:css": "stylelint \"./**/*.{css,vue}\" --ignore-path .gitignore --formatter verbose",
+    "lint:css:fix": "npm run lint:css:files -- --fix",
+    "lint:types": "nuxt typecheck"
   },
   "allowScripts": {
     "esbuild": true
@@ -36,6 +43,7 @@
   "devDependencies": {
     "@cherepanov.pavel/shareable-config": "^1.0.3",
     "eslint-plugin-tailwindcss": "^4.3.0",
-    "unplugin-icons": "^23.0.1"
+    "unplugin-icons": "^23.0.1",
+    "vue-tsc": "^3.3.10"
   }
 }

@@ -22,21 +22,21 @@ const debouncedFn = useDebounceFn((search: string) => {
     class="flex flex-wrap items-center justify-between gap-5"
   >
     <div
-      class="flex items-center gap-7.5 w-full md:w-auto"
+      class="flex w-full items-center gap-7.5 md:w-auto"
     >
       <h1
-        class="font-bold text-4xl"
+        class="text-4xl font-bold"
       >
         Список новостей
       </h1>
       <AppLink
-        class="px-2.5 py-3 rounded-full shadow-sm ml-auto"
+        class="ml-auto rounded-full px-2.5 py-3 shadow-sm"
         :to="{
           name: 'news-list',
         }"
       >
         <IconRefresh
-          class="w-5 h-4 text-[#0029FF]"
+          class="h-4 w-5 text-[#0029FF]"
         />
       </AppLink>
     </div>
@@ -47,6 +47,3 @@ const debouncedFn = useDebounceFn((search: string) => {
     />
   </header>
 </template>
-
-<style scoped lang="scss">
-</style>

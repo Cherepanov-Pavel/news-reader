@@ -17,6 +17,3 @@ const { newsList } = defineProps<Props>();
     />
   </div>
 </template>
-
-<style scoped lang="scss">
-</style>

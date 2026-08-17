@@ -16,7 +16,7 @@ const props = defineProps<Props>();
     custom
   >
     <a
-      class="underline cursor-pointer"
+      class="cursor-pointer underline"
       :class="props.class"
       :href="href || undefined"
       :target="isExternal ? '_blank' : undefined"
@@ -27,6 +27,3 @@ const props = defineProps<Props>();
     </a>
   </NuxtLink>
 </template>
-
-<style scoped lang="scss">
-</style>

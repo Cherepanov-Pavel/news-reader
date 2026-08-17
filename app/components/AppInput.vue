@@ -11,12 +11,12 @@ const model = defineModel<string>({
 
 <template>
   <div
-    class="flex w-full items-center gap-3 border border-gray-200 shadow-sm py-2.5 px-4"
+    class="flex w-full items-center gap-3 border border-gray-200 px-4 py-2.5 shadow-sm"
     :class="[attrs.class]"
   >
     <input
       v-model="model"
-      class="w-full h-full"
+      class="size-full"
       v-bind="attrs"
     >
     <slot
@@ -24,6 +24,3 @@ const model = defineModel<string>({
     />
   </div>
 </template>
-
-<style scoped lang="scss">
-</style>
