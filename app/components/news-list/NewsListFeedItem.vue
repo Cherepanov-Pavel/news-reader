@@ -12,7 +12,7 @@ const newsListItemPubDateFormatted = computed(() => {
 
 <template>
   <article
-    class="grid items-start gap-5 border border-gray-100 bg-white p-7.5 pb-1 shadow-sm"
+    class="flex flex-col items-start gap-5 md:gap-7 border border-gray-100 bg-white pt-5 px-5.5 pb-1 md:p-7.5 shadow-sm"
   >
     <div
       class="flex flex-col md:flex-row gap-5 md:gap-7.5"
@@ -27,13 +27,13 @@ const newsListItemPubDateFormatted = computed(() => {
         class="flex flex-col gap-5"
       >
         <h2
-          class="text-lg font-bold leading-5.5 text-primary line-clamp-2 h-11"
+          class="text-lg font-bold leading-5.5 text-primary line-clamp-3 md:line-clamp-2 h-16.5 md:h-11"
         >
           {{ newsListItem.title }}
         </h2>
 
         <p
-          class="text-sm line-clamp-3 md:line-clamp-2 h-15"
+          class="text-sm line-clamp-3 md:line-clamp-2 h-15 md:h-10"
         >
           {{ newsListItem.description }}
         </p>
@@ -41,7 +41,7 @@ const newsListItemPubDateFormatted = computed(() => {
     </div>
     <AppLink
       :to="newsListItem.link"
-      class="text-primary md:hidden"
+      class="text-primary text-sm md:hidden"
     >
       Подробнее
     </AppLink>

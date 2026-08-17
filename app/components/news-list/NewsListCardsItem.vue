@@ -27,7 +27,7 @@ const newsListItemPubDateFormatted = computed(() => {
     </p>
     <AppLink
       :to="newsListItem.link"
-      class="text-primary"
+      class="text-primary text-sm"
     >
       Подробнее
     </AppLink>
