@@ -19,9 +19,12 @@
     "stylelint.vscode-stylelint",
 
     "streetsidesoftware.code-spell-checker",
-    "streetsidesoftware.code-spell-checker-russian"
+    "streetsidesoftware.code-spell-checker-russian",
 
 		// need to check that it's working well
 		// iulian-radu-at.find-unused-exports
+
+		// override
+		"bradlc.vscode-tailwindcss"
   ],
 }

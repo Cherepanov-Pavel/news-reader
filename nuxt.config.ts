@@ -40,7 +40,7 @@ export default defineNuxtConfig({
     },
   },
   css: [
-    '~/assets/css/index.css',
+    '~/assets/css/tailwind.css',
     '~/assets/css/reset.css',
   ],
 });
