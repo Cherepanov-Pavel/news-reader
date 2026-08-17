@@ -32,6 +32,13 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  typescript: {
+    tsConfig: {
+      vueCompilerOptions: {
+        fallthroughAttributes: true,
+      },
+    },
+  },
   css: [
     '~/assets/css/index.css',
     '~/assets/css/reset.css',

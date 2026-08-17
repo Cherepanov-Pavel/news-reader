@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { FIRST_PAGE } from '#shared/constants/pagination';
+import { ViewMode } from '~/types';
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const NewsListFeed = resolveComponent('NewsListFeed');
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const NewsListCards = resolveComponent('NewsListCards');
 definePageMeta({
   name: 'news-list',
 });
@@ -17,6 +22,17 @@ if (!Number.isSafeInteger(page.value) || page.value < 1) {
   });
 }
 
+const viewModes = [
+  {
+    mode: ViewMode.feed,
+    componentIs: NewsListFeed,
+  },
+  {
+    mode: ViewMode.cards,
+    componentIs: NewsListCards,
+  },
+];
+const { viewMode } = useLocalStorage();
 const { data } = await useFetch('/api/rss', {
   query: {
     page,
@@ -39,9 +55,16 @@ const newsList = computed(() => {
   <TheToolbar
     class="mb-7"
   />
-  <TheNewsList
-    :newsList
-  />
+  <template
+    v-for="{ mode, componentIs } in viewModes"
+    :key="mode"
+  >
+    <component
+      :is="componentIs"
+      v-if="viewMode === mode"
+      :newsList
+    />
+  </template>
   <AppPagination
     :totalPages="data?.totalPages"
   />

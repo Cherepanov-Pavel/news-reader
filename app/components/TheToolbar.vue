@@ -1,14 +1,29 @@
 <script setup lang="ts">
-import IconViewCard from '~icons/figma/view-card';
+import IconViewCards from '~icons/figma/view-cards';
 import IconViewFeed from '~icons/figma/view-feed';
 import { NewsListItemSource } from '~~/shared/types/api/news';
 import { FIRST_PAGE } from '#shared/constants/pagination';
+import { ViewMode } from '~/types';
+import { useMounted } from '@vueuse/core';
 const route = useRoute();
+const isMounted = useMounted();
 
 const sourceLinks = [
   { label: 'Все' },
   { label: 'Lenta.ru', source: NewsListItemSource.lenta },
   { label: 'Mos.ru', source: NewsListItemSource.mos },
+];
+
+const { viewMode } = useLocalStorage();
+const viewModeBtns = [
+  {
+    mode: ViewMode.feed,
+    iconComponent: IconViewFeed,
+  },
+  {
+    mode: ViewMode.cards,
+    iconComponent: IconViewCards,
+  },
 ];
 </script>
 
@@ -46,21 +61,22 @@ const sourceLinks = [
     <div
       class="flex gap-2.5"
     >
-      <!--
-				text-gray-400
-				text-blue-600
-			-->
-      <AppButton
-        class="w-4 h-4"
+      <template
+        v-for="{ mode, iconComponent } in viewModeBtns"
+        :key="mode"
       >
-        <IconViewFeed />
-      </AppButton>
-
-      <AppButton
-        class="w-4 h-4"
-      >
-        <IconViewCard />
-      </AppButton>
+        <AppButton
+          class="w-4 h-4"
+          :class="[
+            isMounted && viewMode === mode ? 'text-primary' : 'text-secondary',
+          ]"
+          @click="() => viewMode = mode"
+        >
+          <component
+            :is="iconComponent"
+          />
+        </AppButton>
+      </template>
     </div>
   </div>
 </template>

@@ -3,6 +3,7 @@
 
 <template>
   <button
+    class="cursor-pointer"
     type="button"
   >
     <slot />

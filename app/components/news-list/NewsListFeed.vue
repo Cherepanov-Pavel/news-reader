@@ -8,9 +8,9 @@ const { newsList } = defineProps<Props>();
 
 <template>
   <div
-    class="grid grid-cols-1 md:grid-cols-2 gap-5"
+    class="grid gap-5"
   >
-    <TheNewsListItem
+    <NewsListFeedItem
       v-for="newsListItem in newsList"
       :key="newsListItem.link"
       :newsListItem

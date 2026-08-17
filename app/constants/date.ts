@@ -1,0 +1,1 @@
+export const FRONTEND_DATE_FORMAT = 'DD.MM.YYYY';

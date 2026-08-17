@@ -12,27 +12,39 @@ const newsListItemPubDateFormatted = computed(() => {
 
 <template>
   <article
-    class="flex items-start flex-col gap-5 border border-gray-100 bg-white p-7.5 pb-4 shadow-sm"
+    class="grid items-start gap-5 border border-gray-100 bg-white p-7.5 pb-1 shadow-sm"
   >
-    <h2
-      class="text-lg font-bold leading-5.5 text-primary line-clamp-3 h-16.5 mb-1"
+    <div
+      class="flex flex-col md:flex-row gap-5 md:gap-7.5"
     >
-      {{ newsListItem.title }}
-    </h2>
+      <AppImg
+        v-if="newsListItem.enclosure.url"
+        class="w-full md:w-50 shrink-0 aspect-[2/1]"
+        :src="newsListItem.enclosure.url"
+        :alt="`Изображение для новости: ${newsListItem.title}`"
+      />
+      <div
+        class="flex flex-col gap-5"
+      >
+        <h2
+          class="text-lg font-bold leading-5.5 text-primary line-clamp-2 h-11"
+        >
+          {{ newsListItem.title }}
+        </h2>
 
-    <p
-      class="text-sm line-clamp-2 h-10"
-    >
-      {{ newsListItem.description }}
-    </p>
-
+        <p
+          class="text-sm line-clamp-3 md:line-clamp-2 h-15"
+        >
+          {{ newsListItem.description }}
+        </p>
+      </div>
+    </div>
     <AppLink
       :to="newsListItem.link"
-      class="text-primary"
+      class="text-primary md:hidden"
     >
       Подробнее
     </AppLink>
-
     <footer
       class="mt-auto flex items-end justify-between text-sm text-secondary w-full"
     >
