@@ -41,8 +41,9 @@
     "vue-router": "^5.2.0"
   },
   "devDependencies": {
-    "@cherepanov.pavel/shareable-config": "^1.0.7",
+    "@cherepanov.pavel/shareable-config": "^1.0.8",
     "eslint-plugin-tailwindcss": "^4.3.0",
+    "npm-run-all2": "^9.0.3",
     "unplugin-icons": "^23.0.1",
     "vue-tsc": "^3.3.10"
   }

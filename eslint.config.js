@@ -40,27 +40,20 @@ export function override() {
   eslintConfig.push({
     files: ['**/*.vue', '**/*.ts', '**/*.js'],
     rules: {
-      '@stylistic/no-tabs': ['off'],
       '@typescript-eslint/prefer-enum-initializers': ['off'],
     },
   });
   eslintConfig.push(...pluginVueA11y.configs['flat/recommended']);
-  // TODO: add errors about empty style/script tags?
-  eslintConfig.push(
-    (
-      eslintPluginTailwindcss.configs['flat/recommended']
-      || eslintPluginTailwindcss.configs.recommended
-    ),
-  );
+  // TODO: add errors about empty script tags?
   eslintConfig.push({
+		files: ['**/*.vue'],
     settings: {
-      // Define the tailwindcss settings with the MANDATORY `cssConfigPath`
       tailwindcss: {
         cssConfigPath: './app/assets/css/tailwind.css',
       },
     },
-    // Optional: Customize the rules to your needs
     rules: {
+			...eslintPluginTailwindcss.configs.recommended,
       'tailwindcss/classnames-order': 'error',
       'tailwindcss/enforces-negative-arbitrary-values': 'error',
       'tailwindcss/enforces-shorthand': 'error',
