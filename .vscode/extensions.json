@@ -25,6 +25,6 @@
 		// iulian-radu-at.find-unused-exports
 
 		// override
-		"bradlc.vscode-tailwindcss"
+		"bradlc.vscode-tailwindcss",
 	],
 }

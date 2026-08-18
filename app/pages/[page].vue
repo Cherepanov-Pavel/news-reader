@@ -6,66 +6,66 @@ const NewsListFeed = resolveComponent('NewsListFeed');
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const NewsListCards = resolveComponent('NewsListCards');
 definePageMeta({
-  name: 'news-list',
+	name: 'news-list',
 });
 const route = useRoute();
 const page = computed(() => {
-  return Number(route.params.page);
+	return Number(route.params.page);
 });
 if (!Number.isSafeInteger(page.value) || page.value < 1) {
-  await navigateTo({
-    name: 'news-list',
-    params: {
-      page: FIRST_PAGE,
-    },
-    query: route.query,
-  });
+	await navigateTo({
+		name: 'news-list',
+		params: {
+			page: FIRST_PAGE,
+		},
+		query: route.query,
+	});
 }
 
 const viewModes = [
-  {
-    mode: ViewMode.feed,
-    componentIs: NewsListFeed,
-  },
-  {
-    mode: ViewMode.cards,
-    componentIs: NewsListCards,
-  },
+	{
+		mode: ViewMode.feed,
+		componentIs: NewsListFeed,
+	},
+	{
+		mode: ViewMode.cards,
+		componentIs: NewsListCards,
+	},
 ];
 const { viewMode } = useLocalStorage();
 const { data } = await useFetch('/api/rss', {
-  query: {
-    page,
-    source: computed(() => {
-      return route.query.source;
-    }),
-    search: computed(() => {
-      return route.query.search;
-    }),
-  },
+	query: {
+		page,
+		source: computed(() => {
+			return route.query.source;
+		}),
+		search: computed(() => {
+			return route.query.search;
+		}),
+	},
 });
 const newsList = computed(() => {
-  return data.value?.items ?? [];
+	return data.value?.items ?? [];
 });
 </script>
 
 <template>
-  <NewsListHeader />
-  <AppDivider />
-  <NewsListToolbar
-    class="mb-7"
-  />
-  <template
-    v-for="{ mode, componentIs } in viewModes"
-    :key="mode"
-  >
-    <component
-      :is="componentIs"
-      v-if="viewMode === mode"
-      :newsList
-    />
-  </template>
-  <AppPagination
-    :totalPages="data?.totalPages"
-  />
+	<NewsListHeader />
+	<AppDivider />
+	<NewsListToolbar
+		class="mb-7"
+	/>
+	<template
+		v-for="{ mode, componentIs } in viewModes"
+		:key="mode"
+	>
+		<component
+			:is="componentIs"
+			v-if="viewMode === mode"
+			:newsList
+		/>
+	</template>
+	<AppPagination
+		:totalPages="data?.totalPages"
+	/>
 </template>

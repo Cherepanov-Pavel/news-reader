@@ -2,10 +2,10 @@
 </script>
 
 <template>
-  <button
-    class="cursor-pointer"
-    type="button"
-  >
-    <slot />
-  </button>
+	<button
+		class="cursor-pointer"
+		type="button"
+	>
+		<slot />
+	</button>
 </template>
