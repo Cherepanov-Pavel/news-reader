@@ -1,5 +1,6 @@
 import {
   globalConfig,
+  jsonConfig,
   jsConfig,
   tsConfig,
   vueConfig,
@@ -9,6 +10,7 @@ import eslintPluginTailwindcss from 'eslint-plugin-tailwindcss';
 
 const eslintConfig = [
   ...globalConfig,
+  ...jsonConfig,
   jsConfig,
   tsConfig,
   vueConfig,

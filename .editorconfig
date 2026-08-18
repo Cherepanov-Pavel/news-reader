@@ -1,6 +1,6 @@
 # This file is generated with
 # https://github.com/Cherepanov-Pavel/shareable-config
-# Version: 1.0.3
+# Version: 1.0.7
 # File may contain override sections, see project README for more details
 root = true
 
@@ -10,6 +10,5 @@ indent_size = tab
 tab_width = 2
 end_of_line = lf
 charset = utf-8
-# set later
-# trim_trailing_whitespace = true
-# insert_final_newline = false
+trim_trailing_whitespace = true
+insert_final_newline = true
