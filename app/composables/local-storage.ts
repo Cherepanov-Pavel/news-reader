@@ -28,5 +28,16 @@ export function useLocalStorage() {
 			});
 		},
 	};
+
+	watch(localStorage.viewMode, (lsViewMode) => {
+		const isCorrectValue = Object.values(ViewMode).some((viewMode) => {
+			return viewMode === lsViewMode;
+		});
+		if (isCorrectValue) {
+			return;
+		}
+		localStorage.viewMode.value = DEFAULT_VIEW_MODE;
+	}, { immediate: true });
+
 	return localStorage;
 }
