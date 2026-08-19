@@ -13,4 +13,4 @@ pre-push:
     stylelint:
       tags: stylelint
       glob: "*.{css,vue}"
-      run: npm run lint:css:files:fix -- {push_files}
+      run: npm run lint:css:fix -- {push_files}
