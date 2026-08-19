@@ -6,3 +6,9 @@ await navigateTo({
 	},
 });
 </script>
+
+<template>
+	<AppLoading
+		class="absolute top-0 left-0"
+	/>
+</template>
