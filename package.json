@@ -26,7 +26,8 @@
 		"lint:types": "nuxt typecheck"
 	},
 	"allowScripts": {
-		"esbuild": true
+		"esbuild": true,
+		"lefthook": true
 	},
 	"dependencies": {
 		"@pinia/nuxt": "^1.0.1",
@@ -43,6 +44,7 @@
 	"devDependencies": {
 		"@cherepanov.pavel/shareable-config": "^1.0.10",
 		"eslint-plugin-tailwindcss": "^4.3.0",
+		"lefthook": "^2.1.10",
 		"npm-run-all2": "^9.0.3",
 		"unplugin-icons": "^23.0.1",
 		"vue-tsc": "^3.3.10"

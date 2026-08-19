@@ -1,0 +1,16 @@
+#   Refer for explanation to following link:
+#   https://lefthook.dev/configuration/
+
+pre-push:
+  parallel: true
+  commands:
+    typescript:
+      tags: typescript
+      run: npm run lint:types
+    eslint:
+      tags: eslint
+      run: npm run lint:js:fix
+    stylelint:
+      tags: stylelint
+      glob: "*.{css,vue}"
+      run: npm run lint:css:files:fix -- {push_files}
