@@ -2,14 +2,18 @@
 import { FIRST_PAGE } from '#shared/constants/pagination';
 import { ViewMode } from '~/types';
 import { DEFAULT_VIEW_MODE } from '#imports';
+definePageMeta({
+	name: 'news-list',
+});
+useHead({
+	title: 'Список новостей',
+});
 const isMounted = useMounted();
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const NewsListFeed = resolveComponent('NewsListFeed');
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const NewsListCards = resolveComponent('NewsListCards');
-definePageMeta({
-	name: 'news-list',
-});
+
 const route = useRoute();
 const page = computed(() => {
 	return Number(route.params.page);
