@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { FIRST_PAGE } from '#shared/constants/pagination';
 import { ViewMode } from '~/types';
+import { DEFAULT_VIEW_MODE } from '#imports';
+const isMounted = useMounted();
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const NewsListFeed = resolveComponent('NewsListFeed');
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -61,7 +63,7 @@ const newsList = computed(() => {
 	>
 		<component
 			:is="componentIs"
-			v-if="viewMode === mode"
+			v-if="isMounted ? mode === viewMode : mode === DEFAULT_VIEW_MODE"
 			:newsList
 		/>
 	</template>
