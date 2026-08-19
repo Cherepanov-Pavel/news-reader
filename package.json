@@ -33,7 +33,6 @@
 		"@pinia/nuxt": "^1.0.1",
 		"@tailwindcss/vite": "^4.3.3",
 		"@vueuse/nuxt": "^14.4.0",
-		"eslint-plugin-vuejs-accessibility": "^2.5.0",
 		"fast-xml-parser": "^5.10.1",
 		"nuxt": "^4.5.2",
 		"pinia": "^4.0.2",
@@ -44,6 +43,7 @@
 	"devDependencies": {
 		"@cherepanov.pavel/shareable-config": "^1.0.10",
 		"eslint-plugin-tailwindcss": "^4.3.0",
+		"eslint-plugin-vuejs-accessibility": "^2.6.0",
 		"lefthook": "^2.1.10",
 		"npm-run-all2": "^9.0.3",
 		"unplugin-icons": "^23.0.1",
