@@ -40,10 +40,15 @@ export default defineEventHandler(async (event) => {
 		});
 	}
 	const normalizedSearch = search.toLowerCase();
+	const normalizedSplittedSearch = normalizedSearch.split(' ');
 	const rssBySourceAndSearch = rssBySource.filter(({ title, description }) => {
 		return (
-			title.toLowerCase().includes(normalizedSearch)
-			|| description.toLowerCase().includes(normalizedSearch)
+			normalizedSplittedSearch.some((searchWord) => {
+				return title.toLowerCase().includes(searchWord);
+			})
+			|| normalizedSplittedSearch.some((searchWord) => {
+				return description.toLowerCase().includes(searchWord);
+			})
 		);
 	});
 
