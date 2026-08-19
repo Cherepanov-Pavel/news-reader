@@ -12,14 +12,14 @@ const newsListItemPubDateFormatted = computed(() => {
 
 <template>
 	<article
-		class="flex flex-col items-start gap-5 border border-gray-100 bg-white px-5.5 pt-5 pb-1 shadow-sm md:gap-7 md:p-7.5"
+		class="flex flex-col items-start gap-5 border border-gray-100 bg-white px-5.5 pt-5 pb-1 shadow-sm md:gap-7 md:p-7.5 md:pb-1"
 	>
 		<div
 			class="flex flex-col gap-5 md:flex-row md:gap-7.5"
 		>
 			<AppImg
 				v-if="newsListItem.enclosure.url"
-				class="aspect-[2/1] w-full shrink-0 md:w-50"
+				class="aspect-2/1 w-full shrink-0 md:w-50"
 				:src="newsListItem.enclosure.url"
 				:alt="`Изображение для новости: ${newsListItem.title}`"
 			/>
