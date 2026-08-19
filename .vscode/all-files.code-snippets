@@ -1,22 +1,20 @@
 // This file is generated with
 // https://github.com/Cherepanov-Pavel/shareable-config
-// Version: 1.0.3
+// Version: 1.0.9
 // File may contain override sections, see project README for more details
 {
 	// TODO: delimit the scope in another way
-  "template for todo comments for easy search in project for HTML only": {
-    "scope": "html",
-    "prefix": "t html todo",
-    "body": [
-      "$BLOCK_COMMENT_START TODO:",
-      "$0"
-      "$BLOCK_COMMENT_END"
-    ]
-  },
-  "template for todo comments for easy search in project": {
-    "prefix": "t todo",
-    "body": [
-      "$LINE_COMMENT TODO: ",
-    ]
-  },
+	"template for todo comments for easy search in project for HTML only": {
+		"scope": "html",
+		"prefix": "t html todo",
+		"body": [
+			"$BLOCK_COMMENT_START TODO:",
+			"$0",
+			"$BLOCK_COMMENT_END",
+		],
+	},
+	"template for todo comments for easy search in project": {
+		"prefix": "t todo",
+		"body": ["$LINE_COMMENT TODO: "],
+	},
 }

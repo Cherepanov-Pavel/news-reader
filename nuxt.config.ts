@@ -4,43 +4,41 @@ import { FileSystemIconLoader as fileSystemIconLoader } from 'unplugin-icons/loa
 
 
 const transform: ResolvedOptions['transform'] = (svg) => {
-  return svg
-    .replace(/(<svg[^>]*?)width="[^"]*"/u, '$1width="100%"')
-    .replace(/(<svg[^>]*?)height="[^"]*"/u, '$1height="100%"')
-    .replaceAll(/fill=".+"/ug, 'fill="currentColor"');
+	return svg
+		.replace(/(<svg[^>]*?)width="[^"]*"/u, '$1width="100%"')
+		.replace(/(<svg[^>]*?)height="[^"]*"/u, '$1height="100%"')
+		.replaceAll(/fill=".+"/ug, 'fill="currentColor"');
 };
 
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
-  modules: [
-    [
-      // makes available ~icons/ import
-      'unplugin-icons/nuxt',
-      {
-        customCollections: {
-          figma: fileSystemIconLoader('app/assets/svg'),
-        },
-        transform,
-      },
-    ],
-    '@pinia/nuxt',
-    '@vueuse/nuxt',
-  ],
-  devtools: { enabled: false },
-  vite: {
-    plugins: [
-      tailwindcss(),
-    ],
-  },
-  typescript: {
-    tsConfig: {
-      vueCompilerOptions: {
-        fallthroughAttributes: true,
-      },
-    },
-  },
-  css: [
-    '~/assets/css/tailwind.css',
-    '~/assets/css/reset.css',
-  ],
+	compatibilityDate: '2025-07-15',
+	modules: [
+		[
+			// makes available ~icons/ import
+			'unplugin-icons/nuxt',
+			{
+				customCollections: {
+					figma: fileSystemIconLoader('app/assets/svg'),
+				},
+				transform,
+			},
+		],
+		'@pinia/nuxt',
+		'@vueuse/nuxt',
+	],
+	devtools: { enabled: false },
+	vite: {
+		plugins: [tailwindcss()],
+	},
+	typescript: {
+		tsConfig: {
+			vueCompilerOptions: {
+				fallthroughAttributes: true,
+			},
+		},
+	},
+	css: [
+		'~/assets/css/tailwind.css',
+		'~/assets/css/reset.css',
+	],
 });

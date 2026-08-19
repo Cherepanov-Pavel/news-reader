@@ -1,4 +1,4 @@
 export enum ViewMode {
-  cards = 'cards',
-  feed = 'feed',
+	cards = 'cards',
+	feed = 'feed',
 }

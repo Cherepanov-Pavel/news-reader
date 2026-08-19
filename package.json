@@ -1,49 +1,50 @@
 {
-  "name": "news-reader",
-  "type": "module",
-  "devEngines": {
-    "packageManager": {
-      "name": "npm",
-      "version": "11.19.0"
-    },
-    "runtime": {
-      "name": "node",
-      "version": "26.7.0"
-    }
-  },
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint": "run-p -lc lint:js lint:css lint:types",
-    "lint:fix": "run-p -lc lint:js:fix lint:css:fix lint:types",
-    "lint:js": "eslint",
-    "lint:js:fix": "npm run lint:js -- --fix",
-    "lint:css": "stylelint \"./**/*.{css,vue}\" --ignore-path .gitignore --formatter verbose",
-    "lint:css:fix": "npm run lint:css:files -- --fix",
-    "lint:types": "nuxt typecheck"
-  },
-  "allowScripts": {
-    "esbuild": true
-  },
-  "dependencies": {
-    "@pinia/nuxt": "^1.0.1",
-    "@tailwindcss/vite": "^4.3.3",
-    "@vueuse/nuxt": "^14.4.0",
-    "eslint-plugin-vuejs-accessibility": "^2.5.0",
-    "fast-xml-parser": "^5.10.1",
-    "nuxt": "^4.5.2",
-    "pinia": "^4.0.2",
-    "tailwindcss": "^4.3.3",
-    "vue": "^3.5.40",
-    "vue-router": "^5.2.0"
-  },
-  "devDependencies": {
-    "@cherepanov.pavel/shareable-config": "^1.0.3",
-    "eslint-plugin-tailwindcss": "^4.3.0",
-    "unplugin-icons": "^23.0.1",
-    "vue-tsc": "^3.3.10"
-  }
+	"name": "news-reader",
+	"type": "module",
+	"devEngines": {
+		"packageManager": {
+			"name": "npm",
+			"version": "11.19.0"
+		},
+		"runtime": {
+			"name": "node",
+			"version": "26.7.0"
+		}
+	},
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare",
+		"lint": "run-p -lc lint:js lint:css lint:types",
+		"lint:fix": "run-p -lc lint:js:fix lint:css:fix lint:types",
+		"lint:js": "eslint",
+		"lint:js:fix": "npm run lint:js -- --fix",
+		"lint:css": "stylelint \"./**/*.{css,vue}\" --ignore-path .gitignore --formatter verbose",
+		"lint:css:fix": "npm run lint:css:files -- --fix",
+		"lint:types": "nuxt typecheck"
+	},
+	"allowScripts": {
+		"esbuild": true
+	},
+	"dependencies": {
+		"@pinia/nuxt": "^1.0.1",
+		"@tailwindcss/vite": "^4.3.3",
+		"@vueuse/nuxt": "^14.4.0",
+		"eslint-plugin-vuejs-accessibility": "^2.5.0",
+		"fast-xml-parser": "^5.10.1",
+		"nuxt": "^4.5.2",
+		"pinia": "^4.0.2",
+		"tailwindcss": "^4.3.3",
+		"vue": "^3.5.40",
+		"vue-router": "^5.2.0"
+	},
+	"devDependencies": {
+		"@cherepanov.pavel/shareable-config": "^1.0.9",
+		"eslint-plugin-tailwindcss": "^4.3.0",
+		"npm-run-all2": "^9.0.3",
+		"unplugin-icons": "^23.0.1",
+		"vue-tsc": "^3.3.10"
+	}
 }
