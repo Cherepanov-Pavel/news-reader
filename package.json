@@ -41,7 +41,7 @@
 		"vue-router": "^5.2.0"
 	},
 	"devDependencies": {
-		"@cherepanov.pavel/shareable-config": "^1.0.10",
+		"@cherepanov.pavel/shareable-config": "^1.0.13",
 		"eslint-plugin-tailwindcss": "^4.3.0",
 		"eslint-plugin-vuejs-accessibility": "^2.6.0",
 		"lefthook": "^2.1.10",
