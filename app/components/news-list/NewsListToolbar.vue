@@ -1,17 +1,26 @@
 <script setup lang="ts">
 import IconViewCards from '~icons/figma/view-cards';
 import IconViewFeed from '~icons/figma/view-feed';
-import { NewsListItemSource } from '~~/shared/types/api/news';
 import { FIRST_PAGE } from '#shared/constants/pagination';
 import { ViewMode } from '~/types';
 import { useMounted } from '@vueuse/core';
+import { capitalize } from '#shared/utils/string';
+const { RSSSourceList } = useRSSSourceListStore();
+
 const route = useRoute();
 const isMounted = useMounted();
 
 const sourceLinks = [
-	{ label: 'Все' },
-	{ label: 'Lenta.ru', source: NewsListItemSource.lenta },
-	{ label: 'Mos.ru', source: NewsListItemSource.mos },
+	{
+		label: 'Все',
+		source: undefined,
+	},
+	...RSSSourceList.map(({ host }) => {
+		return {
+			label: capitalize(host),
+			source: host,
+		};
+	}),
 ];
 
 const { viewMode } = useLocalStorage();

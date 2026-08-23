@@ -3,7 +3,7 @@ interface Enclosure {
 	type: string;
 }
 
-export interface MosRSSItem {
+export interface RSSItem {
 	title?: string;
 	description?: string;
 	link: string;

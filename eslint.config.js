@@ -48,6 +48,7 @@ export function override() {
 		],
 		rules: {
 			'@typescript-eslint/prefer-enum-initializers': ['off'],
+			'@typescript-eslint/naming-convention': ['off'],
 		},
 	});
 	eslintConfig.push(...pluginVueA11y.configs['flat/recommended']);

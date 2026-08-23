@@ -1,7 +1,9 @@
 import tailwindcss from '@tailwindcss/vite';
 import type { ResolvedOptions } from 'unplugin-icons';
 import { FileSystemIconLoader as fileSystemIconLoader } from 'unplugin-icons/loaders';
+import { validateEnv } from './nuxt-config/utils/env-validation';
 
+validateEnv();
 
 const transform: ResolvedOptions['transform'] = (svg) => {
 	return svg
@@ -12,6 +14,12 @@ const transform: ResolvedOptions['transform'] = (svg) => {
 
 export default defineNuxtConfig({
 	compatibilityDate: '2025-07-15',
+	runtimeConfig: {
+		pageSize: 4,
+		public: {
+			RSSSourceList: [],
+		},
+	},
 	modules: [
 		[
 			// makes available ~icons/ import
@@ -35,6 +43,9 @@ export default defineNuxtConfig({
 			vueCompilerOptions: {
 				fallthroughAttributes: true,
 			},
+		},
+		nodeTsConfig: {
+			include: ['../nuxt-config/**/*'],
 		},
 	},
 	css: [

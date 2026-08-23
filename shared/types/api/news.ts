@@ -1,8 +1,3 @@
-export enum NewsListItemSource {
-	lenta = 'lenta.ru',
-	mos = 'mos.ru',
-}
-
 export interface NewsListItem {
 	title: string;
 	description: string;
@@ -11,5 +6,5 @@ export interface NewsListItem {
 	enclosure: {
 		url?: string;
 	};
-	source: NewsListItemSource;
+	source: string;
 }

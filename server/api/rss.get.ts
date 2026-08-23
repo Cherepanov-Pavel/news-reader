@@ -1,10 +1,11 @@
-import { mapLentaRssItemToNewsListItem, mapMosRssItemToNewsListItem } from '~~/server/utils/mappers';
-import { NewsListItemSource } from '~~/shared/types/api/news';
 import { FIRST_PAGE } from '#shared/constants/pagination';
-
-const PAGE_SIZE = 4;
+import { getCachedRSSSourceList } from '~~/server/utils/rss';
+import { fetchRSSItems } from '../utils/rss';
+const { pageSize } = useRuntimeConfig();
 
 export default defineEventHandler(async (event) => {
+	const { RSSSourceList = [] } = (await getCachedRSSSourceList()) ?? {};
+
 	const {
 		page,
 		source,
@@ -12,24 +13,14 @@ export default defineEventHandler(async (event) => {
 	} = getQuery(event);
 
 	const selectedSources = source
-		? [source as NewsListItemSource]
-		: Object.values(NewsListItemSource);
+		? RSSSourceList.filter(({ host }) => {
+			return host === source;
+		})
+		: RSSSourceList;
 
 	const rssBySource = (await Promise.all(
-		selectedSources.map(async (sourceName) => {
-			switch (sourceName) {
-				case NewsListItemSource.lenta: {
-					const items = await $fetch('/api/lenta-rss');
-
-					return items.map(mapLentaRssItemToNewsListItem);
-				}
-
-				case NewsListItemSource.mos: {
-					const items = await $fetch('/api/mos-rss');
-
-					return items.map(mapMosRssItemToNewsListItem);
-				}
-			}
+		selectedSources.map(async ({ href, host }) => {
+			return fetchRSSItems(href, host);
 		}),
 	)).flat();
 
@@ -58,10 +49,10 @@ export default defineEventHandler(async (event) => {
 
 	const normalizedPage = Math.max(Number(page) || FIRST_PAGE, FIRST_PAGE);
 	const total = allRssSorted.length;
-	const totalPages = Math.ceil(total / PAGE_SIZE);
-	const start = (normalizedPage - 1) * PAGE_SIZE;
+	const totalPages = Math.ceil(total / pageSize);
+	const start = (normalizedPage - 1) * pageSize;
 
-	const paginatedAndSortedRss = allRssSorted.slice(start, start + PAGE_SIZE);
+	const paginatedAndSortedRss = allRssSorted.slice(start, start + pageSize);
 
 	return {
 		items: paginatedAndSortedRss,
