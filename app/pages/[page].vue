@@ -9,9 +9,7 @@ useHead({
 	title: 'Список новостей',
 });
 const isMounted = useMounted();
-// eslint-disable-next-line @typescript-eslint/naming-convention
 const NewsListFeed = resolveComponent('NewsListFeed');
-// eslint-disable-next-line @typescript-eslint/naming-convention
 const NewsListCards = resolveComponent('NewsListCards');
 
 const route = useRoute();

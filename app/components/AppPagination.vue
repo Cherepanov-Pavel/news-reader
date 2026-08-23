@@ -16,7 +16,7 @@ const pages = computed(() => {
 	if (totalPages <= 5) {
 		return Array.from(
 			{ length: totalPages },
-			// eslint-disable-next-line @typescript-eslint/naming-convention, id-length
+			// eslint-disable-next-line id-length
 			(_, index) => {
 				return index + 1;
 			},
