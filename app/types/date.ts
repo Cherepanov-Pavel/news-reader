@@ -1,4 +1,6 @@
-import type { FRONTEND_DATE_FORMAT } from '~/constants/date';
+import type {
+	FRONTEND_DATE_FORMAT,
+} from "~/constants/date";
 
 export type DateConstructorParameter = ConstructorParameters<typeof Date>[0];
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import IconMagnifyingGlass from '~icons/figma/magnifying-glass';
+import IconMagnifyingGlass from "~icons/figma/magnifying-glass";
 
 
 const model = defineModel<string>({
-	default: '',
+	default: "",
 });
 </script>
 

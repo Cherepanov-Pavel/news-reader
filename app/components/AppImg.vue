@@ -3,7 +3,10 @@ interface Props {
 	src: string;
 	alt: string;
 }
-const { src, alt } = defineProps<Props>();
+const {
+	src,
+	alt,
+} = defineProps<Props>();
 </script>
 
 <template>

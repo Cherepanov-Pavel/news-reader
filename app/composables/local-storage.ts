@@ -1,5 +1,9 @@
-import { useLocalStorage as vueUseUseLocalStorage } from '@vueuse/core';
-import { ViewMode } from '~/types';
+import {
+	useLocalStorage as vueUseUseLocalStorage,
+} from "@vueuse/core";
+import {
+	ViewMode,
+} from "~/types";
 
 export const DEFAULT_VIEW_MODE = ViewMode.cards;
 
@@ -9,7 +13,7 @@ const commonOptions = {
 export function useLocalStorage() {
 	const localStorage = {
 		viewMode: vueUseUseLocalStorage<ViewMode>(
-			'viewMode',
+			"viewMode",
 			DEFAULT_VIEW_MODE,
 			commonOptions,
 		),
@@ -18,7 +22,7 @@ export function useLocalStorage() {
 			(
 				Object.keys(localStorage) as (keyof typeof localStorage)[]
 			).forEach((key) => {
-				if (key === 'clear') {
+				if (key === "clear") {
 					return;
 				}
 				if (!clearKeys.includes(key)) {
@@ -37,7 +41,9 @@ export function useLocalStorage() {
 			return;
 		}
 		localStorage.viewMode.value = DEFAULT_VIEW_MODE;
-	}, { immediate: true });
+	}, {
+		immediate: true,
+	});
 
 	return localStorage;
 }

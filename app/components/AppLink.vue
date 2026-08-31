@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import type { ClassValue } from 'vue';
+import type {
+	ClassValue,
+} from "vue";
 
 
 interface Props {

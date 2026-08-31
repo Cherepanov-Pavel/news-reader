@@ -1,4 +1,6 @@
-import type { RouterConfig } from '@nuxt/schema';
+import type {
+	RouterConfig,
+} from "@nuxt/schema";
 
 
 export default {

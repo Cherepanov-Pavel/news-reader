@@ -1,7 +1,9 @@
-import baseConfig from '@cherepanov.pavel/shareable-config/tools/stylelint-config/config.js';
+import baseConfig from "@cherepanov.pavel/shareable-config/tools/stylelint-config/config.js";
 
 const stylelintConfig = {
-	extends: [baseConfig],
+	extends: [
+		baseConfig,
+	],
 	// Можно добавить другие опции stylelint, например:
 	// rules: { ... }
 };

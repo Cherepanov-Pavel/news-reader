@@ -4,9 +4,9 @@ import {
 	jsConfig,
 	tsConfig,
 	vueConfig,
-} from '@cherepanov.pavel/shareable-config/tools/eslint-config/index.js';
-import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
-import eslintPluginTailwindcss from 'eslint-plugin-tailwindcss';
+} from "@cherepanov.pavel/shareable-config/tools/eslint-config/index.js";
+import pluginVueA11y from "eslint-plugin-vuejs-accessibility";
+import eslintPluginTailwindcss from "eslint-plugin-tailwindcss";
 
 const eslintConfig = [
 	...globalConfig,
@@ -26,15 +26,17 @@ export function override() {
 	//   },
 	// });
 	eslintConfig.push({
-		files: ['**/*.vue'],
+		files: [
+			"**/*.vue",
+		],
 		rules: {
-			'vue/multi-word-component-names': [
-				'error',
+			"vue/multi-word-component-names": [
+				"error",
 				{
 					ignores: [
-						'Index',
-						'[page]',
-						'[...slug]',
+						"Index",
+						"[page]",
+						"[...slug]",
 					],
 				},
 			],
@@ -42,34 +44,38 @@ export function override() {
 	});
 	eslintConfig.push({
 		files: [
-			'**/*.vue',
-			'**/*.ts',
-			'**/*.js',
+			"**/*.vue",
+			"**/*.ts",
+			"**/*.js",
 		],
 		rules: {
-			'@typescript-eslint/prefer-enum-initializers': ['off'],
-			'@typescript-eslint/naming-convention': ['off'],
+			"@typescript-eslint/prefer-enum-initializers": [
+				"off",
+			],
+			"@typescript-eslint/naming-convention": [
+				"off",
+			],
 		},
 	});
-	eslintConfig.push(...pluginVueA11y.configs['flat/recommended']);
+	eslintConfig.push(...pluginVueA11y.configs["flat/recommended"]);
 	// TODO: add errors about empty script tags?
 	eslintConfig.push(eslintPluginTailwindcss.configs.recommended);
 	eslintConfig.push({
 		files: eslintPluginTailwindcss.configs.recommended.files,
 		settings: {
 			tailwindcss: {
-				cssConfigPath: './app/assets/css/tailwind.css',
+				cssConfigPath: "./app/assets/css/tailwind.css",
 			},
 		},
 		rules: {
-			'tailwindcss/classnames-order': 'error',
-			'tailwindcss/enforces-negative-arbitrary-values': 'error',
-			'tailwindcss/enforces-shorthand': 'error',
-			'tailwindcss/important-modifier-suffix': 'error',
-			'tailwindcss/no-arbitrary-value': 'off',
-			'tailwindcss/no-contradicting-classname': 'error',
-			'tailwindcss/no-custom-classname': 'warn',
-			'tailwindcss/no-unnecessary-arbitrary-value': 'error',
+			"tailwindcss/classnames-order": "error",
+			"tailwindcss/enforces-negative-arbitrary-values": "error",
+			"tailwindcss/enforces-shorthand": "error",
+			"tailwindcss/important-modifier-suffix": "error",
+			"tailwindcss/no-arbitrary-value": "off",
+			"tailwindcss/no-contradicting-classname": "error",
+			"tailwindcss/no-custom-classname": "warn",
+			"tailwindcss/no-unnecessary-arbitrary-value": "error",
 		},
 	});
 }

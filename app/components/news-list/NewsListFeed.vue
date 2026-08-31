@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import type { NewsListItem } from '~~/shared/types/api/news';
+import type {
+	NewsListItem,
+} from "~~/shared/types/api/news";
 interface Props {
 	newsList: NewsListItem[];
 }
-const { newsList } = defineProps<Props>();
+const {
+	newsList,
+} = defineProps<Props>();
 </script>
 
 <template>
