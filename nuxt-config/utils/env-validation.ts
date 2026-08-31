@@ -1,4 +1,6 @@
-import { z } from 'zod';
+import {
+	z,
+} from "zod";
 
 export function validateEnv() {
 	const schema = z.object({
@@ -16,7 +18,9 @@ export function validateEnv() {
 					return JSON.parse(val);
 				})
 				.pipe(
-					z.array(z.object({ href: z.url() })).min(1),
+					z.array(z.object({
+						href: z.url(),
+					})).min(1),
 				)
 		),
 	});
@@ -25,9 +29,9 @@ export function validateEnv() {
 	if (!result.success) {
 		const errors = result.error.issues
 			.map((i) => {
-				return `  • ${i.path.join('.')}: ${i.message}`;
+				return `  • ${i.path.join(".")}: ${i.message}`;
 			})
-			.join('\n');
+			.join("\n");
 
 		throw new Error(`Invalid environment variables:\n${errors}`);
 	}

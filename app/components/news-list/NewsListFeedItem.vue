@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import type { NewsListItem } from '~~/shared/types/api/news';
+import type {
+	NewsListItem,
+} from "~~/shared/types/api/news";
 interface Props {
 	newsListItem: NewsListItem;
 }
-const { newsListItem } = defineProps<Props>();
+const {
+	newsListItem,
+} = defineProps<Props>();
 
 const newsListItemPubDateFormatted = computed(() => {
 	return convertDateToFrontendDate(newsListItem.pubDate);

@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import IconRefresh from '~icons/figma/refresh';
-import { SECOND } from '#shared/constants/date';
-import { FIRST_PAGE } from '~~/shared/constants/pagination';
+import IconRefresh from "~icons/figma/refresh";
+import {
+	SECOND,
+} from "#shared/constants/date";
+import {
+	FIRST_PAGE,
+} from "~~/shared/constants/pagination";
 const route = useRoute();
 
 const search = computed(() => {
@@ -9,7 +13,7 @@ const search = computed(() => {
 });
 const debouncedFn = useDebounceFn((search: string) => {
 	void navigateTo({
-		name: 'news-list',
+		name: "news-list",
 		params: {
 			page: FIRST_PAGE,
 		},

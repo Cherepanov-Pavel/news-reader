@@ -16,11 +16,11 @@ interface Props {
 }
 const {
 	viewBox,
-	preserveAspectRatio = 'xMidYMid meet',
+	preserveAspectRatio = "xMidYMid meet",
 	speed = 5,
-	baseUrl = '',
-	primaryColor = '#f9f9f9',
-	secondaryColor = 'black',
+	baseUrl = "",
+	primaryColor = "#f9f9f9",
+	secondaryColor = "black",
 	primaryOpacity = 1,
 	secondaryOpacity = 1,
 	uniqueKey,
@@ -36,10 +36,10 @@ const idGradient = computed(() => {
 	return (uniqueKey ? `${uniqueKey}-idGradient` : useId());
 });
 const width = computed(() => {
-	return props.width ?? '100%';
+	return props.width ?? "100%";
 });
 const height = computed(() => {
-	return props.height ?? '100%';
+	return props.height ?? "100%";
 });
 const computedViewBox = computed(
 	() => {
@@ -57,7 +57,9 @@ const computedViewBox = computed(
 		:preserveAspectRatio
 	>
 		<rect
-			:style="{ fill: `url(${baseUrl}#${idGradient})` }"
+			:style="{
+				fill: `url(${baseUrl}#${idGradient})`,
+			}"
 			:clip-path="`url(${baseUrl}#${idClip})`"
 			x="0"
 			y="0"

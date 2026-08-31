@@ -1,16 +1,22 @@
 <script setup lang="ts">
-import { FIRST_PAGE } from '#shared/constants/pagination';
-import { ViewMode } from '~/types';
-import { DEFAULT_VIEW_MODE } from '#imports';
+import {
+	FIRST_PAGE,
+} from "#shared/constants/pagination";
+import {
+	ViewMode,
+} from "~/types";
+import {
+	DEFAULT_VIEW_MODE,
+} from "#imports";
 definePageMeta({
-	name: 'news-list',
+	name: "news-list",
 });
 useHead({
-	title: 'Список новостей',
+	title: "Список новостей",
 });
 const isMounted = useMounted();
-const NewsListFeed = resolveComponent('NewsListFeed');
-const NewsListCards = resolveComponent('NewsListCards');
+const NewsListFeed = resolveComponent("NewsListFeed");
+const NewsListCards = resolveComponent("NewsListCards");
 
 const route = useRoute();
 const page = computed(() => {
@@ -18,7 +24,7 @@ const page = computed(() => {
 });
 if (!Number.isSafeInteger(page.value) || page.value < 1) {
 	await navigateTo({
-		name: 'news-list',
+		name: "news-list",
 		params: {
 			page: FIRST_PAGE,
 		},
@@ -36,8 +42,12 @@ const viewModes = [
 		componentIs: NewsListCards,
 	},
 ];
-const { viewMode } = useLocalStorage();
-const { data } = await useFetch('/api/rss', {
+const {
+	viewMode,
+} = useLocalStorage();
+const {
+	data,
+} = await useFetch("/api/rss", {
 	query: {
 		page,
 		source: computed(() => {
@@ -60,7 +70,10 @@ const newsList = computed(() => {
 		class="mb-7"
 	/>
 	<template
-		v-for="{ mode, componentIs } in viewModes"
+		v-for="{
+			mode,
+			componentIs,
+		} in viewModes"
 		:key="mode"
 	>
 		<component

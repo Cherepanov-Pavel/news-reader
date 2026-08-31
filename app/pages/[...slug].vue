@@ -1,6 +1,6 @@
 <script setup lang="ts">
 await navigateTo({
-	name: 'news-list',
+	name: "news-list",
 	params: {
 		page: 1,
 	},

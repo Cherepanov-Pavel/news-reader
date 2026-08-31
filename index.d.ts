@@ -4,7 +4,7 @@ interface RSSSource {
 
 type RSSSourceList = RSSSource[];
 
-declare module 'nuxt/schema' {
+declare module "nuxt/schema" {
 	interface RuntimeConfig {
 		pageSize: number;
 	}

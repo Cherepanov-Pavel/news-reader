@@ -15,7 +15,9 @@ const currentPage = computed(() => {
 const pages = computed(() => {
 	if (totalPages <= 5) {
 		return Array.from(
-			{ length: totalPages },
+			{
+				length: totalPages,
+			},
 			// eslint-disable-next-line id-length
 			(_, index) => {
 				return index + 1;
@@ -23,7 +25,9 @@ const pages = computed(() => {
 		);
 	}
 
-	const pages: (number | '...')[] = [1];
+	const pages: (number | "...")[] = [
+		1,
+	];
 	let startPage: number;
 	let endPage: number;
 
@@ -44,7 +48,7 @@ const pages = computed(() => {
 	// Добавляем "..." между первой страницей
 	// и диапазоном, если между ними есть пропуск.
 	if (startPage > 2) {
-		pages.push('...');
+		pages.push("...");
 	}
 
 	for (let page = startPage; page <= endPage; page++) {
@@ -54,7 +58,7 @@ const pages = computed(() => {
 	// Добавляем "..." между диапазоном
 	// и последней страницей, если между ними есть пропуск.
 	if (endPage < totalPages - 1) {
-		pages.push('...');
+		pages.push("...");
 	}
 
 	pages.push(totalPages);
@@ -76,7 +80,9 @@ const pages = computed(() => {
 			>
 				<NuxtLink
 					v-if="page !== '...'"
-					:class="[currentPage === page ? 'text-primary' : 'hover:text-primary']"
+					:class="[
+						currentPage === page ? 'text-primary' : 'hover:text-primary',
+					]"
 					:to="{
 						name: `news-list`,
 						params: {
