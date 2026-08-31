@@ -4,7 +4,6 @@ SSR news aggregator
 
 ## Features
 
-- RSS feeds from [Mos.ru](https://www.mos.ru/rss) and [Lenta.ru](https://lenta.ru/rss/news)
 - News search and filtering
 - Pagination
 - URL-based filters and pagination

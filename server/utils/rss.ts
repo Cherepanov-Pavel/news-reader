@@ -1,5 +1,5 @@
 import type {
-	RSSItem,
+	RssAnswer,
 } from "~~/server/types/rss";
 import {
 	parseXml,
@@ -27,14 +27,8 @@ export async function fetchRSSItems(href: string, source: string): Promise<NewsL
 	const xml = await $fetch<string>(href, {
 		responseType: "text",
 	});
-	const data = parseXml<{
-		rss?: {
-			channel?: {
-				item?: RSSItem[];
-			};
-		};
-	}>(xml);
-	const items = data.rss?.channel?.item ?? [];
+	const data = parseXml<RssAnswer>(xml);
+	const items = data.rss.channel.item;
 
 	return items.map((item) => {
 		const normalizedEnclosure = Array.isArray(item.enclosure) ? item.enclosure[0] : item.enclosure;
