@@ -3,6 +3,9 @@ import tailwindcss from "@tailwindcss/vite";
 import {
 	validateEnv,
 } from "./nuxt-config/utils/env-validation";
+import {
+	unpluginIconsModule,
+} from "./nuxt-config/unplugin-icons";
 
 validateEnv();
 
@@ -38,6 +41,7 @@ export default defineNuxtConfig({
 	modules: [
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
+		unpluginIconsModule,
 	],
 	compatibilityDate: "2025-07-15",
 });

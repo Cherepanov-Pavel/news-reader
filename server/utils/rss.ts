@@ -12,14 +12,14 @@ import {
 	getRSSSourceList as getRSSSourceListShared,
 } from "#shared/utils/env";
 
-export const getCachedRSSSourceList = cachedFunction(
+export const getCachedRSSSourceList = defineCachedFunction(
 	() => {
 		return {
 			RSSSourceList: getRSSSourceListShared(),
 		};
 	},
 	{
-		name: "get-rss-source-list",
+		maxAge: Infinity,
 	},
 );
 

@@ -13,8 +13,8 @@ const {
 
 export default defineEventHandler(async (event) => {
 	const {
-		RSSSourceList = [],
-	} = (await getCachedRSSSourceList()) ?? {};
+		RSSSourceList,
+	} = await getCachedRSSSourceList();
 
 	const {
 		page,
