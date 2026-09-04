@@ -55,6 +55,14 @@ export function override() {
 			"@typescript-eslint/naming-convention": [
 				"off",
 			],
+			"@stylistic/indent": [
+				"error",
+				"tab",
+				{
+					tabLength: 2,
+					MemberExpression: 0,
+				},
+			],
 		},
 	});
 	eslintConfig.push(...pluginVueA11y.configs["flat/recommended"]);

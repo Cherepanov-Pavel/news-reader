@@ -12,7 +12,7 @@
 		}
 	},
 	"scripts": {
-		"postinstall": "nuxt prepare",
+		"postinstall": "nuxt prepare --dotenv .env.development",
 		"dev": "nuxt dev --dotenv .env.development",
 		"build": "nuxt build",
 		"lint": "run-p -lc lint:js lint:css lint:types",

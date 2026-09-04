@@ -12,10 +12,12 @@ import {
 validateEnv();
 
 const transform: ResolvedOptions["transform"] = (svg) => {
-	return svg
+	return (
+		svg
 		.replace(/(<svg[^>]*?)width="[^"]*"/u, "$1width=\"100%\"")
 		.replace(/(<svg[^>]*?)height="[^"]*"/u, "$1height=\"100%\"")
-		.replaceAll(/fill=".+"/ug, "fill=\"currentColor\"");
+		.replaceAll(/fill=".+"/ug, "fill=\"currentColor\"")
+	);
 };
 
 export default defineNuxtConfig({
