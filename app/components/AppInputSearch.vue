@@ -17,7 +17,7 @@ const model = defineModel<string>({
 			#icon
 		>
 			<IconMagnifyingGlass
-				class="size-5 text-[#DCDCDC]"
+				class="size-5 text-secondary"
 			/>
 		</template>
 	</AppInput>

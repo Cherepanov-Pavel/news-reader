@@ -44,7 +44,7 @@ const debouncedFn = useDebounceFn((search: string) => {
 				}"
 			>
 				<IconRefresh
-					class="h-4 w-5 text-[#0029FF]"
+					class="h-4 w-5 text-primary"
 				/>
 			</AppLink>
 		</div>
