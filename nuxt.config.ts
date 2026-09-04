@@ -19,12 +19,32 @@ const transform: ResolvedOptions["transform"] = (svg) => {
 };
 
 export default defineNuxtConfig({
-	compatibilityDate: "2025-07-15",
 	runtimeConfig: {
 		pageSize: 4,
 		public: {
 			RSSSourceList: [],
 		},
+	},
+	typescript: {
+		tsConfig: {
+			vueCompilerOptions: {
+				fallthroughAttributes: true,
+			},
+		},
+		nodeTsConfig: {
+			include: [
+				"../nuxt-config/**/*",
+			],
+		},
+	},
+	css: [
+		"~/assets/css/reset.css",
+		"~/assets/css/tailwind.css",
+	],
+	vite: {
+		plugins: [
+			tailwindcss(),
+		],
 	},
 	modules: [
 		[
@@ -40,28 +60,5 @@ export default defineNuxtConfig({
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
 	],
-	devtools: {
-		enabled: false,
-	},
-	vite: {
-		plugins: [
-			tailwindcss(),
-		],
-	},
-	typescript: {
-		tsConfig: {
-			vueCompilerOptions: {
-				fallthroughAttributes: true,
-			},
-		},
-		nodeTsConfig: {
-			include: [
-				"../nuxt-config/**/*",
-			],
-		},
-	},
-	css: [
-		"~/assets/css/tailwind.css",
-		"~/assets/css/reset.css",
-	],
+	compatibilityDate: "2025-07-15",
 });
