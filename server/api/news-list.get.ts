@@ -103,10 +103,9 @@ export default defineEventHandler(async (
 		return new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime();
 	});
 
-	const normalizedPage = Math.max(Number(page) || FIRST_PAGE, FIRST_PAGE);
 	const total = newsListBySourceAndSearchSorted.length;
 	const totalPages = Math.ceil(total / pageSize);
-	const start = (normalizedPage - 1) * pageSize;
+	const start = (page - 1) * pageSize;
 
 	const newsListBySourceAndSearchSortedAndPaginated = (
 		newsListBySourceAndSearchSorted.slice(start, start + pageSize)
