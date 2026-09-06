@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import {
-	FIRST_PAGE,
-} from "#shared/constants/pagination";
-import {
 	ViewMode,
 } from "~/types";
 import {
 	DEFAULT_VIEW_MODE,
 } from "#imports";
+import {
+	FIRST_PAGE,
+} from "~~/shared/constants/pagination";
+import {
+	getNuxtH3ZodIssues,
+	isNuxtH3Error,
+	isNuxtH3ZodError,
+} from "~/utils/error.utils";
 definePageMeta({
 	name: "news-list",
 });
@@ -22,15 +27,6 @@ const route = useRoute();
 const page = computed(() => {
 	return Number(route.params.page);
 });
-if (!Number.isSafeInteger(page.value) || page.value < 1) {
-	await navigateTo({
-		name: "news-list",
-		params: {
-			page: FIRST_PAGE,
-		},
-		query: route.query,
-	});
-}
 
 const viewModes = [
 	{
@@ -47,6 +43,7 @@ const {
 } = useLocalStorage();
 const {
 	data,
+	error,
 } = await useFetch("/api/news-list", {
 	query: {
 		page,
@@ -57,6 +54,37 @@ const {
 			return route.query.search;
 		}),
 	},
+});
+
+watch(error, (error) => {
+	if (!isNuxtH3Error(error)) {
+		return;
+	}
+	if (!isNuxtH3ZodError(error)) {
+		return;
+	}
+	if (error.status === 400) {
+		const parsed = getNuxtH3ZodIssues(error);
+		const isPageProblem = parsed.some(({
+			path,
+		}) => {
+			return path.some((pathItem) => {
+				return pathItem === "page";
+			});
+		});
+		if (!isPageProblem) {
+			return;
+		}
+		void navigateTo({
+			name: "news-list",
+			params: {
+				page: FIRST_PAGE,
+			},
+			query: route.query,
+		});
+	}
+}, {
+	immediate: true,
 });
 const newsList = computed(() => {
 	return data.value?.items ?? [];
