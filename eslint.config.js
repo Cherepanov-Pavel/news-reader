@@ -55,6 +55,9 @@ export function override() {
 			"@typescript-eslint/naming-convention": [
 				"off",
 			],
+			"@typescript-eslint/unbound-method": [
+				"off",
+			],
 			"@stylistic/indent": [
 				"error",
 				"tab",

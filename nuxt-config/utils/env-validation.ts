@@ -20,8 +20,7 @@ export function validateEnv() {
 			.pipe(
 				z
 				.array(
-					z
-					.object({
+					z.object({
 						href: z.url(),
 					}),
 				)
@@ -35,11 +34,5 @@ export function validateEnv() {
 		return;
 	}
 
-	const errors = result.error.issues
-	.map((i) => {
-		return `  • ${i.path.join(".")}: ${i.message}`;
-	})
-	.join("\n");
-
-	throw new Error(`Invalid environment variables:\n${errors}`);
+	throw new Error(`Invalid environment variables:\n${result.error}`);
 }

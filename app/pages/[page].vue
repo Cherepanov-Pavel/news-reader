@@ -47,7 +47,7 @@ const {
 } = useLocalStorage();
 const {
 	data,
-} = await useFetch("/api/rss", {
+} = await useFetch("/api/news-list", {
 	query: {
 		page,
 		source: computed(() => {

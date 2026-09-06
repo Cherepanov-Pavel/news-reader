@@ -8,3 +8,5 @@ export interface NewsListItem {
 	};
 	source: string;
 }
+
+export type NewsList = NewsListItem[];
