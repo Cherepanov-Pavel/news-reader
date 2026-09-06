@@ -64,22 +64,25 @@ export default defineEventHandler(async (
 			});
 		}),
 	);
-	const newsListBySource = (
+	const newsListBySourcePromiseFulfilled = (
 		newsListBySourcePromiseSettledResult
 		.filter((result) => {
 			return result.status === "fulfilled";
 		})
-		.flatMap((result) => {
-			return result.value;
-		})
 	);
-
-	if (newsListBySource.length === 0) {
+	if (newsListBySourcePromiseFulfilled.length === 0) {
 		throw createError({
 			statusCode: 502,
 			statusMessage: "All RSS sources failed",
 		});
 	}
+
+	const newsListBySource = (
+		newsListBySourcePromiseFulfilled
+		.flatMap((result) => {
+			return result.value;
+		})
+	);
 
 	const normalizedSearch = search.toLowerCase();
 	const normalizedSplittedSearch = normalizedSearch.split(" ");
