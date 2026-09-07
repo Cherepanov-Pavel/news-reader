@@ -9,6 +9,9 @@ import {
 import {
 	rssResponseToNewsListMapper,
 } from "~~/server/mappers/news-list.mappers";
+import {
+	FIRST_PAGE,
+} from "~~/shared/constants/pagination";
 
 const {
 	pageSize,
@@ -113,7 +116,7 @@ export default defineEventHandler(async (
 	await getValidatedQuery(
 		event,
 		newListQueryMaxPageSchema({
-			totalPages,
+			totalPages: Math.max(totalPages, FIRST_PAGE),
 		}).parse,
 	);
 	const start = (page - 1) * pageSize;
