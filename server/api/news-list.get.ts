@@ -1,12 +1,9 @@
 import {
-	FIRST_PAGE,
-} from "#shared/constants/pagination";
-import {
+	getCachedResponseValidationResult,
 	getCachedRssSourceList,
 } from "~~/server/utils/news-list.utils";
 import {
 	newListQuerySchema,
-	rssResponseSchema,
 } from "~~/server/schemas/news-list.schemas";
 import {
 	rssResponseToNewsListMapper,
@@ -57,7 +54,14 @@ export default defineEventHandler(async (
 			const responseXmlParsed = parseXml(
 				responseXml,
 			);
-			const response = rssResponseSchema.parse(responseXmlParsed);
+			/*
+			The schema compliance check is performed once and cached permanently for performance reasons.
+			I optimistically assume that subsequent responses will also comply with the schema.
+			*/
+			const response = await getCachedResponseValidationResult({
+				href,
+				response: responseXmlParsed,
+			});
 			return rssResponseToNewsListMapper({
 				response,
 				source: host,
