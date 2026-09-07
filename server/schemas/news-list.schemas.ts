@@ -57,10 +57,7 @@ const rssItemSchema = z.object({
 	description: z.string().optional(),
 	link: z.url(),
 	pubDate: z.string(),
-	enclosure: z.union([
-		enclosureSchema,
-		z.array(enclosureSchema),
-	]),
+	enclosure: z.array(enclosureSchema),
 });
 
 export const rssResponseSchema = z.object({

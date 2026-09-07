@@ -14,14 +14,13 @@ export function rssResponseToNewsListMapper({
 	const items = response.rss.channel.item;
 
 	return items.map((item) => {
-		const normalizedEnclosure = Array.isArray(item.enclosure) ? item.enclosure[0] : item.enclosure;
 		return {
 			title: item.title ?? "",
 			description: item.description ?? "",
 			link: item.link,
 			pubDate: item.pubDate,
 			enclosure: {
-				url: normalizedEnclosure?.url,
+				url: item.enclosure[0]?.url,
 			},
 			source,
 		};
