@@ -45,7 +45,23 @@ export const newListQuerySchema = ({
 		})
 	);
 };
-
+export const newListQueryMaxPageSchema = ({
+	totalPages,
+}: {
+	totalPages: number;
+}) => {
+	return (
+		z
+		.object({
+			page: (
+				z
+				.coerce
+				.number()
+				.max(totalPages)
+			),
+		})
+	);
+};
 
 const enclosureSchema = z.object({
 	url: z.string(),

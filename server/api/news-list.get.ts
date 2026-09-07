@@ -3,6 +3,7 @@ import {
 	getCachedRssSourceList,
 } from "~~/server/utils/news-list.utils";
 import {
+	newListQueryMaxPageSchema,
 	newListQuerySchema,
 } from "~~/server/schemas/news-list.schemas";
 import {
@@ -109,6 +110,12 @@ export default defineEventHandler(async (
 
 	const total = newsListBySourceAndSearchSorted.length;
 	const totalPages = Math.ceil(total / pageSize);
+	await getValidatedQuery(
+		event,
+		newListQueryMaxPageSchema({
+			totalPages,
+		}).parse,
+	);
 	const start = (page - 1) * pageSize;
 
 	const newsListBySourceAndSearchSortedAndPaginated = (
