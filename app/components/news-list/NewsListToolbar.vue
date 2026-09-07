@@ -12,7 +12,7 @@ import {
 } from "@vueuse/core";
 import {
 	capitalize,
-} from "#shared/utils/string";
+} from "~~/shared/utils/string.utils";
 const {
 	RSSSourceList,
 } = useRSSSourceListStore();
