@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		pageSize: 4,
 		public: {
-			RSSSourceList: [],
+			rssSourceList: [],
 		},
 	},
 	typescript: {

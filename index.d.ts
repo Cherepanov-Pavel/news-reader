@@ -1,15 +1,15 @@
-interface RSSSource {
+export interface RssSource {
 	href: string;
 }
 
-type RSSSourceList = RSSSource[];
+type RssSourceList = RssSource[];
 
 declare module "nuxt/schema" {
 	interface RuntimeConfig {
 		pageSize: number;
 	}
 	interface PublicRuntimeConfig {
-		RSSSourceList: RSSSourceList;
+		rssSourceList: RssSourceList;
 	}
 }
 // It is always important to ensure you import/export something when augmenting a type
