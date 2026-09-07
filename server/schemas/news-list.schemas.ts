@@ -57,6 +57,7 @@ const rssItemSchema = z.object({
 	description: z.string().optional(),
 	link: z.url(),
 	pubDate: z.string(),
+	// The enclosure is always present in the response. If it is not, the source is incorrect.
 	enclosure: z.array(enclosureSchema),
 });
 
