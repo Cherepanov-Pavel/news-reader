@@ -57,6 +57,9 @@ const {
 });
 
 watch(error, (error) => {
+	if (!error) {
+		return;
+	}
 	if (
 		!isNuxtH3Error(error)
 		|| !isNuxtH3ZodError(error)
