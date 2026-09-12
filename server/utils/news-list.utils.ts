@@ -1,10 +1,4 @@
 import {
-	parseXml,
-} from "~~/server/utils/xml.utils";
-import type {
-	NewsListItem,
-} from "#shared/types/api/news";
-import {
 	getRssSourceList,
 } from "#shared/utils/env.utils";
 import {

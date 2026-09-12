@@ -34,9 +34,12 @@ export function useLocalStorage() {
 	};
 
 	watch(localStorage.viewMode, (lsViewMode) => {
-		const isCorrectValue = Object.values(ViewMode).some((viewMode) => {
-			return viewMode === lsViewMode;
-		});
+		const isCorrectValue = (
+			Object.values(ViewMode)
+			.some((viewMode) => {
+				return viewMode === lsViewMode;
+			})
+		);
 		if (isCorrectValue) {
 			return;
 		}

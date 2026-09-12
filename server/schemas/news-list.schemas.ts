@@ -67,16 +67,22 @@ const enclosureSchema = z.object({
 	url: z.string(),
 	type: z.string(),
 });
-
 const rssItemSchema = z.object({
-	title: z.string().optional(),
-	description: z.string().optional(),
+	title: (
+		z
+		.string()
+		.optional()
+	),
+	description: (
+		z
+		.string()
+		.optional()
+	),
 	link: z.url(),
 	pubDate: z.iso.datetime(),
 	// The enclosure is always present in the response. If it is not, the source is incorrect.
 	enclosure: z.array(enclosureSchema),
 });
-
 export const rssResponseSchema = z.object({
 	rss: z.object({
 		channel: z.object({

@@ -99,16 +99,30 @@ export default defineEventHandler(async (
 	}) => {
 		return (
 			normalizedSplittedSearch.some((searchWord) => {
-				return title.toLowerCase().includes(searchWord);
+				return (
+					title
+					.toLowerCase()
+					.includes(searchWord)
+				);
 			})
 			|| normalizedSplittedSearch.some((searchWord) => {
-				return description.toLowerCase().includes(searchWord);
+				return (
+					description
+					.toLowerCase()
+					.includes(searchWord)
+				);
 			})
 		);
 	});
 
 	const newsListBySourceAndSearchSorted = newsListBySourceAndSearch.sort((a, b) => {
-		return new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime();
+		return (
+			new Date(b.pubDate)
+			.getTime()
+		) - (
+			new Date(a.pubDate)
+			.getTime()
+		);
 	});
 
 	const total = newsListBySourceAndSearchSorted.length;
