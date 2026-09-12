@@ -57,32 +57,32 @@ const {
 });
 
 watch(error, (error) => {
-	if (!isNuxtH3Error(error)) {
+	if (
+		!isNuxtH3Error(error)
+		|| !isNuxtH3ZodError(error)
+		|| !(error.status === 400)
+	) {
+		throw error;
+	}
+
+	const parsed = getNuxtH3ZodIssues(error);
+	const isPageProblem = parsed.some(({
+		path,
+	}) => {
+		return path.some((pathItem) => {
+			return pathItem === "page";
+		});
+	});
+	if (!isPageProblem) {
 		return;
 	}
-	if (!isNuxtH3ZodError(error)) {
-		return;
-	}
-	if (error.status === 400) {
-		const parsed = getNuxtH3ZodIssues(error);
-		const isPageProblem = parsed.some(({
-			path,
-		}) => {
-			return path.some((pathItem) => {
-				return pathItem === "page";
-			});
-		});
-		if (!isPageProblem) {
-			return;
-		}
-		void navigateTo({
-			name: "news-list",
-			params: {
-				page: FIRST_PAGE,
-			},
-			query: route.query,
-		});
-	}
+	void navigateTo({
+		name: "news-list",
+		params: {
+			page: FIRST_PAGE,
+		},
+		query: route.query,
+	});
 }, {
 	immediate: true,
 });

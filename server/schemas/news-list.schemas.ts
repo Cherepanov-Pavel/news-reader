@@ -79,7 +79,16 @@ const rssItemSchema = z.object({
 		.optional()
 	),
 	link: z.url(),
-	pubDate: z.iso.datetime(),
+	pubDate: (
+		z
+		.string()
+		.refine(
+			(value) => {
+				return !Number.isNaN(Date.parse(value));
+			},
+			"Invalid RSS date",
+		)
+	),
 	// The enclosure is always present in the response. If it is not, the source is incorrect.
 	enclosure: z.array(enclosureSchema),
 });
