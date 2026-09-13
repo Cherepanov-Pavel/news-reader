@@ -3,9 +3,6 @@ import {
 	ViewMode,
 } from "~/types";
 import {
-	DEFAULT_VIEW_MODE,
-} from "#imports";
-import {
 	FIRST_PAGE,
 } from "~~/shared/constants/pagination";
 import {
@@ -13,6 +10,12 @@ import {
 	isNuxtH3Error,
 	isNuxtH3ZodError,
 } from "~/utils/error.utils";
+import {
+	DEFAULT_VIEW_MODE,
+	useLocalStorage,
+} from "~/composables/local-storage";
+import NewsListFeed from "~/components/news-list/NewsListFeed.vue";
+import NewsListCards from "~/components/news-list/NewsListCards.vue";
 definePageMeta({
 	name: "news-list",
 });
@@ -20,8 +23,6 @@ useHead({
 	title: "Список новостей",
 });
 const isMounted = useMounted();
-const NewsListFeed = resolveComponent("NewsListFeed");
-const NewsListCards = resolveComponent("NewsListCards");
 
 const route = useRoute();
 const page = computed(() => {

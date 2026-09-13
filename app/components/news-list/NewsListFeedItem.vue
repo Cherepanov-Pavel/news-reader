@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import {
+	convertDateToFrontendDate,
+} from "~/utils/date.utils";
 import type {
 	NewsListItem,
 } from "~~/shared/types/api/news";

@@ -43,5 +43,11 @@ export default defineNuxtConfig({
 		"@vueuse/nuxt",
 		unpluginIconsModule,
 	],
+	// https://nuxt.com/docs/4.x/guide/concepts/auto-imports#partially-disabling-auto-imports
+	// https://github.com/nuxt/nuxt/issues/29923
+	// https://github.com/nitrojs/nitro/issues/2232
+	imports: {
+		scan: false,
+	},
 	compatibilityDate: "2025-07-15",
 });
