@@ -16,17 +16,14 @@ import {
 } from "~/composables/local-storage";
 import NewsListFeed from "~/components/news-list/NewsListFeed.vue";
 import NewsListCards from "~/components/news-list/NewsListCards.vue";
+const isMounted = useMounted();
+const route = useRoute();
+
 definePageMeta({
 	name: "news-list",
 });
 useHead({
 	title: "Список новостей",
-});
-const isMounted = useMounted();
-
-const route = useRoute();
-const page = computed(() => {
-	return Number(route.params.page);
 });
 
 const viewModes = [
@@ -42,12 +39,13 @@ const viewModes = [
 const {
 	viewMode,
 } = useLocalStorage();
+
 const {
 	data,
 	error,
 } = await useFetch("/api/news-list", {
 	query: {
-		page,
+		page: route.params.page,
 		source: computed(() => {
 			return route.query.source;
 		}),
@@ -56,7 +54,9 @@ const {
 		}),
 	},
 });
-
+const newsList = computed(() => {
+	return data.value?.items ?? [];
+});
 watch(error, (error) => {
 	if (!error) {
 		return;
@@ -89,9 +89,6 @@ watch(error, (error) => {
 	});
 }, {
 	immediate: true,
-});
-const newsList = computed(() => {
-	return data.value?.items ?? [];
 });
 </script>
 
