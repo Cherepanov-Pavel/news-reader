@@ -1,9 +1,13 @@
+/**
+ * Zod schemas for news list domain.
+ */
+
 import {
 	z,
 } from "zod";
 import type {
 	RssSourceList,
-} from "~~/shared/utils/env.utils";
+} from "~~/shared/mappers/rss-source.mappers";
 
 export const newListQuerySchema = ({
 	rssSourceList,
@@ -27,9 +31,9 @@ export const newListQuerySchema = ({
 				.refine(
 					(value) => {
 						return rssSourceList.some(({
-							host,
+							hostname,
 						}) => {
-							return host === value;
+							return hostname === value;
 						});
 					},
 					"Unknown RSS source",
@@ -90,7 +94,11 @@ const rssItemSchema = z.object({
 		)
 	),
 	// The enclosure is always present in the response. If it is not, the source is incorrect.
-	enclosure: z.array(enclosureSchema),
+	enclosure: (
+		z
+		.array(enclosureSchema)
+		.optional()
+	),
 });
 export const rssResponseSchema = z.object({
 	rss: z.object({

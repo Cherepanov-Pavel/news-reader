@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import IconRefresh from "~icons/figma/refresh";
 import {
-	SECOND,
+	second,
 } from "#shared/constants/date";
 import {
 	FIRST_PAGE,
@@ -22,7 +22,7 @@ const debouncedFn = useDebounceFn((search: string) => {
 			search: search.trim() || undefined,
 		},
 	});
-}, 1.5 * SECOND);
+}, 1.5 * second);
 </script>
 
 <template>
@@ -49,7 +49,7 @@ const debouncedFn = useDebounceFn((search: string) => {
 			</AppLink>
 		</div>
 		<AppInputSearch
-			class="w-full md:w-[321px]"
+			class="w-full md:w-80.25"
 			:modelValue="search"
 			@update:modelValue="debouncedFn"
 		/>

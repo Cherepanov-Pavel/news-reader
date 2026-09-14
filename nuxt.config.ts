@@ -22,6 +22,9 @@ export default defineNuxtConfig({
 			vueCompilerOptions: {
 				fallthroughAttributes: true,
 			},
+			include: [
+				"../test/unit/**/*",
+			],
 		},
 		nodeTsConfig: {
 			include: [
@@ -42,6 +45,7 @@ export default defineNuxtConfig({
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
 		unpluginIconsModule,
+		"@nuxt/test-utils/module",
 	],
 	// https://nuxt.com/docs/4.x/guide/concepts/auto-imports#partially-disabling-auto-imports
 	// https://github.com/nuxt/nuxt/issues/29923

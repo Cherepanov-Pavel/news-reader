@@ -1,18 +1,33 @@
-import {
-	getRssSourceList,
-} from "#shared/utils/env.utils";
+/**
+ * Cache helpers for news list domain.
+ */
+
 import {
 	rssResponseSchema,
 } from "~~/server/schemas/news-list.schemas";
+import {
+	getRssSourceList,
+} from "~~/shared/utils/env.utils";
+import {
+	hour,
+} from "~~/shared/constants/date";
+import {
+	createHash,
+} from "node:crypto";
 
 export const getCachedRssSourceList = defineCachedFunction(
 	() => {
-		return {
-			rssSourceList: getRssSourceList(),
-		};
+		return getRssSourceList();
 	},
 	{
 		maxAge: Infinity,
+		getKey: () => {
+			return (
+				createHash("sha256")
+				.update(JSON.stringify(useRuntimeConfig().public.rssSourceList))
+				.digest("hex")
+			);
+		},
 	},
 );
 
@@ -26,7 +41,7 @@ export const getCachedResponseValidationResult = defineCachedFunction(
 		return rssResponseSchema.parse(response);
 	},
 	{
-		maxAge: Infinity,
+		maxAge: hour,
 		getKey: ({
 			href,
 		}) => {

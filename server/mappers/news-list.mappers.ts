@@ -1,3 +1,7 @@
+/**
+ * Data mappers for news list domain.
+ */
+
 import type {
 	RssResponse,
 } from "~~/server/types/news-list.types";
@@ -5,7 +9,7 @@ import type {
 	NewsList,
 } from "~~/shared/types/api/news";
 
-export function rssResponseToNewsListMapper({
+export function mapRssResponseToNewsList({
 	response, source,
 }: {
 	response: RssResponse;
@@ -20,7 +24,7 @@ export function rssResponseToNewsListMapper({
 			link: item.link,
 			pubDate: item.pubDate,
 			enclosure: {
-				url: item.enclosure[0]?.url,
+				url: item.enclosure?.[0]?.url,
 			},
 			source,
 		};

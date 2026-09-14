@@ -1,22 +1,12 @@
-import type {
-	RssSource as EnvRssSource,
-} from "@/../index";
-type RssSource = EnvRssSource & {
-	host: string;
-};
-export type RssSourceList = RssSource[];
+import {
+	mapEnvRssSourceToRssSource,
+} from "~~/shared/mappers/rss-source.mappers";
 
-export function getRssSourceList(): RssSourceList {
-	const rssSourceList = useRuntimeConfig().public.rssSourceList.map(({
-		href,
-	}) => {
-		const {
-			host,
-		} = new URL(href);
-		return {
-			href,
-			host,
-		};
-	});
-	return rssSourceList;
+export function getRssSourceList() {
+	const rssSourceList = useRuntimeConfig().public.rssSourceList.map(
+		mapEnvRssSourceToRssSource,
+	);
+	return {
+		rssSourceList,
+	};
 }

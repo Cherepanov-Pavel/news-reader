@@ -14,14 +14,14 @@ import {
 	capitalize,
 } from "~~/shared/utils/string.utils";
 import {
-	useRSSSourceListStore,
+	useRssSourceListStore,
 } from "~/stores/rss-source-list";
 import {
 	useLocalStorage,
 } from "~/composables/local-storage";
 const {
-	RSSSourceList,
-} = useRSSSourceListStore();
+	rssSourceList,
+} = useRssSourceListStore();
 
 const route = useRoute();
 const isMounted = useMounted();
@@ -31,12 +31,12 @@ const sourceLinks = [
 		label: "Все",
 		source: undefined,
 	},
-	...RSSSourceList.map(({
-		host,
+	...rssSourceList.map(({
+		hostname,
 	}) => {
 		return {
-			label: capitalize(host),
-			source: host,
+			label: capitalize(hostname),
+			source: hostname,
 		};
 	}),
 ];
