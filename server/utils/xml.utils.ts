@@ -1,20 +1,21 @@
 import {
+	type X2jOptions,
 	XMLParser,
 } from "fast-xml-parser";
 
-export function parseXml<T>(xml: string): T {
+export function parseXml({
+	xml,
+	options = {},
+}: {
+	xml: string;
+	options?: X2jOptions;
+}) {
 	return (
 		new XMLParser({
 			attributeNamePrefix: "",
 			ignoreAttributes: false,
-			isArray: (tagName, jPathOrMatcher) => {
-				const pathToItem = "rss.channel.item";
-				return (
-					jPathOrMatcher === pathToItem
-					|| jPathOrMatcher === `${pathToItem}.enclosure`
-				);
-			},
+			...options,
 		})
-		.parse(xml) as T
+		.parse(xml)
 	);
 }

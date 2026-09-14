@@ -27,7 +27,18 @@ async function loadNewsFromSource({
 		},
 	);
 
-	const responseXmlParsed = parseXml(responseXml);
+	const responseXmlParsed = parseXml({
+		xml: responseXml,
+		options: {
+			isArray: (tagName, jPathOrMatcher) => {
+				const pathToItem = "rss.channel.item";
+				return (
+					jPathOrMatcher === pathToItem
+					|| jPathOrMatcher === `${pathToItem}.enclosure`
+				);
+			},
+		},
+	});
 	/*
 	The schema compliance check is performed once and cached permanently for performance reasons.
 	I optimistically assume that subsequent responses will also comply with the schema.

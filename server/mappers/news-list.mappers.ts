@@ -15,16 +15,20 @@ export function mapRssResponseToNewsList({
 	response: RssResponse;
 	source: string;
 }): NewsList {
-	const items = response.rss.channel.item;
-
-	return items.map((item) => {
+	return response.rss.channel.item.map(({
+		title = "",
+		description = "",
+		link,
+		pubDate,
+		enclosure,
+	}) => {
 		return {
-			title: item.title ?? "",
-			description: item.description ?? "",
-			link: item.link,
-			pubDate: item.pubDate,
+			title,
+			description,
+			link,
+			pubDate,
 			enclosure: {
-				url: item.enclosure?.[0]?.url,
+				url: enclosure?.[0]?.url,
 			},
 			source,
 		};

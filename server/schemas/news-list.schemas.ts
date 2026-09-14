@@ -93,7 +93,6 @@ const rssItemSchema = z.object({
 			"Invalid RSS date",
 		)
 	),
-	// The enclosure is always present in the response. If it is not, the source is incorrect.
 	enclosure: (
 		z
 		.array(enclosureSchema)
