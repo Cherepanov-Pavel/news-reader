@@ -5,6 +5,7 @@ import {
 } from "vitest";
 import {
 	paginate,
+	calculateTotalPages,
 } from "~~/shared/utils/pagination.utils";
 
 describe("paginate", () => {
@@ -105,5 +106,83 @@ describe("paginate", () => {
 			2,
 			3,
 		]);
+	});
+});
+
+describe("calculateTotalPages", () => {
+	it("calculates the number of full pages", () => {
+		const result = calculateTotalPages({
+			items: [
+				1,
+				2,
+				3,
+				4,
+			],
+			pageSize: 2,
+		});
+
+		expect(result)
+		.toEqual({
+			totalPages: 2,
+		});
+	});
+
+	it("includes a page for the remaining items", () => {
+		const result = calculateTotalPages({
+			items: [
+				1,
+				2,
+				3,
+				4,
+				5,
+			],
+			pageSize: 2,
+		});
+
+		expect(result)
+		.toEqual({
+			totalPages: 3,
+		});
+	});
+
+	it("returns one page when items fit on one page", () => {
+		const result = calculateTotalPages({
+			items: [
+				1,
+				2,
+			],
+			pageSize: 5,
+		});
+
+		expect(result)
+		.toEqual({
+			totalPages: 1,
+		});
+	});
+
+	it("returns zero pages for an empty list", () => {
+		const result = calculateTotalPages({
+			items: [],
+			pageSize: 5,
+		});
+
+		expect(result)
+		.toEqual({
+			totalPages: 0,
+		});
+	});
+
+	it("returns one page for a single item", () => {
+		const result = calculateTotalPages({
+			items: [
+				1,
+			],
+			pageSize: 1,
+		});
+
+		expect(result)
+		.toEqual({
+			totalPages: 1,
+		});
 	});
 });

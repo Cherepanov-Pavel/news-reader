@@ -12,6 +12,7 @@ import {
 	FIRST_PAGE,
 } from "~~/shared/constants/pagination";
 import {
+	calculateTotalPages,
 	paginate,
 } from "~~/shared/utils/pagination.utils";
 import {
@@ -80,8 +81,12 @@ export default defineEventHandler(async (
 		direction: "desc",
 	});
 
-	const total = sortedNewsList.length;
-	const totalPages = Math.ceil(total / pageSize);
+	const {
+		totalPages,
+	} = calculateTotalPages({
+		items: sortedNewsList,
+		pageSize,
+	});
 	await getValidatedQuery(
 		event,
 		newListQueryMaxPageSchema({
