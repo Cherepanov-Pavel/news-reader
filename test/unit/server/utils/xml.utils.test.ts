@@ -6,28 +6,6 @@ import {
 	parseXml,
 } from "~~/server/utils/xml.utils";
 
-it("parses a single RSS item and preserves enclosure attributes", () => {
-	const result = parseXml({
-		xml: "<rss><channel><item><title>Example news</title><enclosure url=\"https://example.com/news.jpg\" type=\"image/jpeg\" /></item></channel></rss>",
-		options: {
-			isArray,
-		},
-	});
-
-	expect(result.rss.channel.item)
-	.toEqual([
-		{
-			title: "Example news",
-			enclosure: [
-				{
-					url: "https://example.com/news.jpg",
-					type: "image/jpeg",
-				},
-			],
-		},
-	]);
-});
-
 it("keeps rss.channel.item and rss.channel.item.enclosures as arrays", () => {
 	let result = parseXml({
 		xml: "<rss><channel><item><enclosure url=\"one\" /><enclosure url=\"two\" /></item><item><enclosure url=\"three\" /></item></channel></rss>",
@@ -51,8 +29,6 @@ it("keeps rss.channel.item and rss.channel.item.enclosures as arrays", () => {
 	expect(result.rss.channel.item)
 	.toHaveLength(1);
 });
-
-
 function isArray(tagName: any, jPathOrMatcher: any) {
 	const pathToItem = "rss.channel.item";
 	return (

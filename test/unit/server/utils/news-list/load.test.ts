@@ -10,7 +10,7 @@ vi.mock("~~/server/utils/news-list/cache", () => {
 	};
 });
 import {
-	loadNewsFromSourceList,
+	loadNewsFromRssSourceList,
 } from "~~/server/utils/news-list/load";
 
 it("keeps news from sources that loaded successfully", async () => {
@@ -40,7 +40,7 @@ it("keeps news from sources that loaded successfully", async () => {
 			hostname: "other.com",
 		},
 	];
-	const result = await loadNewsFromSourceList({
+	const result = await loadNewsFromRssSourceList({
 		rssSourceList,
 		loadNewsFromSourceFn,
 	});

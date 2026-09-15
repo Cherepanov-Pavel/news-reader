@@ -1,7 +1,3 @@
-/**
- * Helpers for loading news from RSS sources.
- */
-
 import {
 	mapRssResponseToNewsList,
 } from "~~/server/mappers/news-list.mappers";
@@ -53,31 +49,31 @@ async function loadNewsFromSource({
 		source: hostname,
 	});
 }
-export async function loadNewsFromSourceList({
+export async function loadNewsFromRssSourceList({
 	rssSourceList,
 	loadNewsFromSourceFn = loadNewsFromSource,
 }: {
 	rssSourceList: RssSourceList;
 	loadNewsFromSourceFn?: typeof loadNewsFromSource;
 }): Promise<NewsList> {
-	const newsListBySourcePromiseSettledResult = await Promise.allSettled(
+	const newsListBySourceSettled = await Promise.allSettled(
 		rssSourceList.map(async (rssSource) => {
 			return loadNewsFromSourceFn(rssSource);
 		}),
 	);
 
-	const newsListBySourcePromiseFulfilled = newsListBySourcePromiseSettledResult.filter((result) => {
+	const newsListBySourceFulfilled = newsListBySourceSettled.filter((result) => {
 		return result.status === "fulfilled";
 	});
 
-	if (newsListBySourcePromiseFulfilled.length === 0) {
+	if (newsListBySourceFulfilled.length === 0) {
 		throw createError({
 			statusCode: 502,
 			statusMessage: "All RSS sources failed",
 		});
 	}
 
-	return newsListBySourcePromiseFulfilled.flatMap((result) => {
+	return newsListBySourceFulfilled.flatMap((result) => {
 		return result.value;
 	});
 }

@@ -3,11 +3,7 @@ import {
 	newListQuerySchema,
 } from "~~/server/schemas/news-list.schemas";
 import {
-	filterNewsBySearch,
-	filterRssSourcesBySource,
-} from "~~/server/utils/news-list/filter";
-import {
-	loadNewsFromSourceList,
+	loadNewsFromRssSourceList,
 } from "~~/server/utils/news-list/load";
 import {
 	getCachedRssSourceList,
@@ -16,11 +12,17 @@ import {
 	FIRST_PAGE,
 } from "~~/shared/constants/pagination";
 import {
-	sortNewsByPubDate,
-} from "~~/server/utils/news-list/sort";
+	paginate,
+} from "~~/shared/utils/pagination.utils";
 import {
-	paginateNews,
-} from "~~/server/utils/news-list/paginate";
+	filterBySearch,
+} from "~~/shared/utils/search.utils";
+import {
+	sortByDate,
+} from "~~/shared/utils/sort.utils";
+import {
+	filterByValue,
+} from "~~/shared/utils/filter.utils";
 
 const {
 	pageSize,
@@ -44,20 +46,38 @@ export default defineEventHandler(async (
 		}).parse,
 	);
 
-	const filteredRssSourceList = filterRssSourcesBySource({
-		rssSourceList,
-		source,
+	const filteredRssSourceList = filterByValue({
+		items: rssSourceList,
+		value: source,
+		getValue: ({
+			hostname,
+		}) => {
+			return hostname;
+		},
 	});
-
-	const newsList = await loadNewsFromSourceList({
+	const newsList = await loadNewsFromRssSourceList({
 		rssSourceList: filteredRssSourceList,
 	});
-	const filteredNewsList = filterNewsBySearch({
-		newsList,
+	const filteredNewsList = filterBySearch({
+		items: newsList,
 		search,
+		getSearchableWords: ({
+			title, description,
+		}) => {
+			return [
+				title,
+				description,
+			];
+		},
 	});
-	const sortedNewsList = sortNewsByPubDate({
-		newsList: filteredNewsList,
+	const sortedNewsList = sortByDate({
+		items: filteredNewsList,
+		getDate: ({
+			pubDate,
+		}) => {
+			return pubDate;
+		},
+		direction: "desc",
 	});
 
 	const total = sortedNewsList.length;
@@ -68,8 +88,8 @@ export default defineEventHandler(async (
 			totalPages: Math.max(totalPages, FIRST_PAGE),
 		}).parse,
 	);
-	const paginatedNewsList = paginateNews({
-		newsList: sortedNewsList,
+	const paginatedNewsList = paginate({
+		items: sortedNewsList,
 		page,
 		pageSize,
 	});

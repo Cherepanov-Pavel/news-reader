@@ -1,7 +1,3 @@
-/**
- * Cache helpers for news list domain.
- */
-
 import {
 	rssResponseSchema,
 } from "~~/server/schemas/news-list.schemas";
