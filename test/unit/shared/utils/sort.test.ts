@@ -22,7 +22,7 @@ const items = [
 	},
 ];
 
-const getDate = ({
+const selectDate = ({
 	date,
 }: (typeof items)[number]) => {
 	return date;
@@ -32,7 +32,7 @@ describe("sortByDate", () => {
 	it("sorts items by date in ascending order by default", () => {
 		const result = sortByDate({
 			items,
-			getDate,
+			select: selectDate,
 		});
 
 		expect(result.map(({
@@ -50,7 +50,7 @@ describe("sortByDate", () => {
 	it("sorts items by date in descending order", () => {
 		const result = sortByDate({
 			items,
-			getDate,
+			select: selectDate,
 			direction: "desc",
 		});
 
@@ -66,7 +66,7 @@ describe("sortByDate", () => {
 		]);
 	});
 
-	it("uses the date selected by getDate", () => {
+	it("uses the date selected by select", () => {
 		const result = sortByDate({
 			items: [
 				{
@@ -82,7 +82,7 @@ describe("sortByDate", () => {
 					},
 				},
 			],
-			getDate: ({
+			select: ({
 				metadata,
 			}) => {
 				return metadata.publishedAt;
@@ -103,7 +103,7 @@ describe("sortByDate", () => {
 	it("does not mutate the original array", () => {
 		const result = sortByDate({
 			items,
-			getDate,
+			select: selectDate,
 		});
 
 		expect(result)

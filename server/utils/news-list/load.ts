@@ -5,9 +5,6 @@ import type {
 	RssSource,
 	RssSourceList,
 } from "~~/shared/mappers/rss-source.mappers";
-import type {
-	NewsList,
-} from "~~/shared/types/api/news";
 import {
 	getCachedResponseValidationResult,
 } from "~~/server/utils/news-list/cache";
@@ -55,7 +52,7 @@ export async function loadNewsFromRssSourceList({
 }: {
 	rssSourceList: RssSourceList;
 	loadNewsFromSourceFn?: typeof loadNewsFromSource;
-}): Promise<NewsList> {
+}) {
 	const newsListBySourceSettled = await Promise.allSettled(
 		rssSourceList.map(async (rssSource) => {
 			return loadNewsFromSourceFn(rssSource);

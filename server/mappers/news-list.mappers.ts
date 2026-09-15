@@ -1,7 +1,3 @@
-/**
- * Data mappers for news list domain.
- */
-
 import type {
 	RssResponse,
 } from "~~/server/types/news-list.types";

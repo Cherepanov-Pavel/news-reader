@@ -32,8 +32,8 @@ describe("filterByValue", () => {
 	it("returns items with the selected value", () => {
 		const result = filterByValue({
 			items,
+			select: getCategory,
 			value: "framework",
-			getValue: getCategory,
 		});
 
 		expect(result)
@@ -46,8 +46,8 @@ describe("filterByValue", () => {
 	it("returns an empty list when there are no matches", () => {
 		const result = filterByValue({
 			items,
+			select: getCategory,
 			value: "unknown",
-			getValue: getCategory,
 		});
 
 		expect(result)
@@ -57,14 +57,14 @@ describe("filterByValue", () => {
 	it("returns all items when the value is not specified", () => {
 		const result = filterByValue({
 			items,
-			getValue: getCategory,
+			select: getCategory,
 		});
 
 		expect(result)
 		.toEqual(items);
 	});
 
-	it("uses the value returned by getValue", () => {
+	it("uses the value returned by select", () => {
 		const result = filterByValue({
 			items: [
 				{
@@ -80,12 +80,12 @@ describe("filterByValue", () => {
 					},
 				},
 			],
-			value: "selected",
-			getValue: ({
+			select: ({
 				metadata,
 			}) => {
 				return metadata.category;
 			},
+			value: "selected",
 		});
 
 		expect(result.map(({
@@ -101,8 +101,8 @@ describe("filterByValue", () => {
 	it("does not mutate the original array", () => {
 		const result = filterByValue({
 			items,
+			select: getCategory,
 			value: "framework",
-			getValue: getCategory,
 		});
 
 		expect(result)

@@ -1,17 +1,17 @@
 export function filterByValue<T, TValue>({
 	items,
+	select,
 	value,
-	getValue,
 }: {
 	items: T[];
+	select: (item: T) => TValue;
 	value?: TValue;
-	getValue: (item: T) => TValue;
 }): T[] {
 	if (value === undefined) {
 		return items;
 	}
 
 	return items.filter((item) => {
-		return getValue(item) === value;
+		return select(item) === value;
 	});
 }

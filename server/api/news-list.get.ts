@@ -49,12 +49,12 @@ export default defineEventHandler(async (
 
 	const filteredRssSourceList = filterByValue({
 		items: rssSourceList,
-		value: source,
-		getValue: ({
+		select: ({
 			hostname,
 		}) => {
 			return hostname;
 		},
+		value: source,
 	});
 	const newsList = await loadNewsFromRssSourceList({
 		rssSourceList: filteredRssSourceList,
@@ -73,7 +73,7 @@ export default defineEventHandler(async (
 	});
 	const sortedNewsList = sortByDate({
 		items: filteredNewsList,
-		getDate: ({
+		select: ({
 			pubDate,
 		}) => {
 			return pubDate;

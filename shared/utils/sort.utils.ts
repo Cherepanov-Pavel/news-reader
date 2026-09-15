@@ -1,19 +1,19 @@
 export function sortByDate<T>({
 	items,
-	getDate,
+	select,
 	direction = "asc",
 }: {
 	items: T[];
-	getDate: (item: T) => ConstructorParameters<typeof Date>[0];
+	select: (item: T) => ConstructorParameters<typeof Date>[0];
 	direction?: "asc" | "desc";
 }): T[] {
 	return items.toSorted((a, b) => {
 		const aTime = (
-			new Date(getDate(a))
+			new Date(select(a))
 			.getTime()
 		);
 		const bTime = (
-			new Date(getDate(b))
+			new Date(select(b))
 			.getTime()
 		);
 

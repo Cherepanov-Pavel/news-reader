@@ -1,7 +1,3 @@
-/**
- * Zod schemas for news list domain.
- */
-
 import {
 	z,
 } from "zod";
