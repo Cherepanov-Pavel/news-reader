@@ -1,4 +1,6 @@
-import baseConfig from "@cherepanov.pavel/shareable-config/tools/stylelint-config/config.js";
+import {
+	baseConfig,
+} from "@cherepanov.pavel/shareable-config/stylelint-config";
 
 const stylelintConfig = {
 	extends: [

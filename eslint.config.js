@@ -4,7 +4,15 @@ import {
 	jsConfig,
 	tsConfig,
 	vueConfig,
-} from "@cherepanov.pavel/shareable-config/tools/eslint-config/index.js";
+} from "@cherepanov.pavel/shareable-config/eslint-config";
+import {
+	OFF,
+	WARN,
+	ERROR,
+} from "@cherepanov.pavel/shareable-config/eslint-config/constants/severity.js";
+import {
+	getDisabledWarningRules,
+} from "@cherepanov.pavel/shareable-config/utils";
 import pluginVueA11y from "eslint-plugin-vuejs-accessibility";
 import eslintPluginTailwindcss from "eslint-plugin-tailwindcss";
 
@@ -31,39 +39,13 @@ export function override() {
 		],
 		rules: {
 			"vue/multi-word-component-names": [
-				"error",
+				ERROR,
 				{
 					ignores: [
 						"Index",
 						"[page]",
 						"[...slug]",
 					],
-				},
-			],
-		},
-	});
-	eslintConfig.push({
-		files: [
-			"**/*.vue",
-			"**/*.ts",
-			"**/*.js",
-		],
-		rules: {
-			"@typescript-eslint/prefer-enum-initializers": [
-				"off",
-			],
-			"@typescript-eslint/naming-convention": [
-				"off",
-			],
-			"@typescript-eslint/unbound-method": [
-				"off",
-			],
-			"@stylistic/indent": [
-				"error",
-				"tab",
-				{
-					tabLength: 2,
-					MemberExpression: 0,
 				},
 			],
 		},
@@ -79,15 +61,21 @@ export function override() {
 			},
 		},
 		rules: {
-			"tailwindcss/classnames-order": "error",
-			"tailwindcss/enforces-negative-arbitrary-values": "error",
-			"tailwindcss/enforces-shorthand": "error",
-			"tailwindcss/important-modifier-suffix": "error",
-			"tailwindcss/no-arbitrary-value": "off",
-			"tailwindcss/no-contradicting-classname": "error",
-			"tailwindcss/no-custom-classname": "warn",
-			"tailwindcss/no-unnecessary-arbitrary-value": "error",
+			"tailwindcss/classnames-order": ERROR,
+			"tailwindcss/enforces-negative-arbitrary-values": ERROR,
+			"tailwindcss/enforces-shorthand": ERROR,
+			"tailwindcss/important-modifier-suffix": ERROR,
+			"tailwindcss/no-arbitrary-value": OFF,
+			"tailwindcss/no-contradicting-classname": ERROR,
+			"tailwindcss/no-custom-classname": WARN,
+			"tailwindcss/no-unnecessary-arbitrary-value": ERROR,
 		},
+	});
+	eslintConfig.push({
+		files: [
+			"test/**/*.{js,ts,vue}",
+		],
+		rules: getDisabledWarningRules(eslintConfig),
 	});
 }
 override();

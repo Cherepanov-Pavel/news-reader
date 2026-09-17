@@ -18,8 +18,7 @@ const pages = computed(() => {
 			{
 				length: totalPages,
 			},
-			// eslint-disable-next-line id-length
-			(_, index) => {
+			(item, index) => {
 				return index + 1;
 			},
 		);

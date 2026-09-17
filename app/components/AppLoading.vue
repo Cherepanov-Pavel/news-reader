@@ -24,8 +24,8 @@ const {
 	primaryOpacity = 1,
 	secondaryOpacity = 1,
 	uniqueKey,
-	// eslint-disable-next-line vue/no-boolean-default
-	animate = true,
+
+	animate,
 	...props
 } = defineProps<Props>();
 

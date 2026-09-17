@@ -42,7 +42,7 @@
 		"zod": "^4.4.3"
 	},
 	"devDependencies": {
-		"@cherepanov.pavel/shareable-config": "^1.0.25",
+		"@cherepanov.pavel/shareable-config": "^2.0.1",
 		"@nuxt/test-utils": "^4.3.2",
 		"@types/node": "^26.2.0",
 		"eslint-plugin-tailwindcss": "^4.3.0",

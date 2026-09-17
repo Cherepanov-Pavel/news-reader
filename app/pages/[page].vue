@@ -3,7 +3,7 @@ import {
 	ViewMode,
 } from "~/types";
 import {
-	FIRST_PAGE,
+	firstPage,
 } from "~~/shared/constants/pagination";
 import {
 	getNuxtH3ZodIssues,
@@ -11,7 +11,7 @@ import {
 	isNuxtH3ZodError,
 } from "~/utils/error.utils";
 import {
-	DEFAULT_VIEW_MODE,
+	defaultViewMode,
 	useLocalStorage,
 } from "~/composables/local-storage";
 import NewsListFeed from "~/components/news-list/NewsListFeed.vue";
@@ -28,11 +28,11 @@ useHead({
 
 const viewModes = [
 	{
-		mode: ViewMode.feed,
+		mode: ViewMode.Feed,
 		componentIs: NewsListFeed,
 	},
 	{
-		mode: ViewMode.cards,
+		mode: ViewMode.Cards,
 		componentIs: NewsListCards,
 	},
 ];
@@ -83,7 +83,7 @@ watch(error, (error) => {
 	void navigateTo({
 		name: "news-list",
 		params: {
-			page: FIRST_PAGE,
+			page: firstPage,
 		},
 		query: route.query,
 	});
@@ -107,7 +107,7 @@ watch(error, (error) => {
 	>
 		<component
 			:is="componentIs"
-			v-if="isMounted ? mode === viewMode : mode === DEFAULT_VIEW_MODE"
+			v-if="isMounted ? mode === viewMode : mode === defaultViewMode"
 			:newsList
 		/>
 	</template>

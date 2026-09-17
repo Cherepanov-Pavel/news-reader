@@ -1,4 +1,4 @@
-export enum ViewMode {
-	cards = "cards",
-	feed = "feed",
+export const enum ViewMode {
+	Cards = "Cards",
+	Feed = "Feed",
 }

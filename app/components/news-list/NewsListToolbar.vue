@@ -2,7 +2,7 @@
 import IconViewCards from "~icons/figma/view-cards";
 import IconViewFeed from "~icons/figma/view-feed";
 import {
-	FIRST_PAGE,
+	firstPage,
 } from "#shared/constants/pagination";
 import {
 	ViewMode,
@@ -46,11 +46,11 @@ const {
 } = useLocalStorage();
 const viewModeBtns = [
 	{
-		mode: ViewMode.feed,
+		mode: ViewMode.Feed,
 		iconComponent: IconViewFeed,
 	},
 	{
-		mode: ViewMode.cards,
+		mode: ViewMode.Cards,
 		iconComponent: IconViewCards,
 	},
 ];
@@ -77,7 +77,7 @@ const viewModeBtns = [
 					:to="{
 						name: `news-list`,
 						params: {
-							page: FIRST_PAGE,
+							page: firstPage,
 						},
 						query: {
 							...route.query,

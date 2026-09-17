@@ -5,7 +5,7 @@ import {
 	ViewMode,
 } from "~/types";
 
-export const DEFAULT_VIEW_MODE = ViewMode.cards;
+export const defaultViewMode = ViewMode.Cards;
 
 const commonOptions = {
 	writeDefaults: false,
@@ -14,7 +14,7 @@ export function useLocalStorage() {
 	const localStorage = {
 		viewMode: vueUseUseLocalStorage<ViewMode>(
 			"viewMode",
-			DEFAULT_VIEW_MODE,
+			defaultViewMode,
 			commonOptions,
 		),
 
@@ -33,20 +33,20 @@ export function useLocalStorage() {
 		},
 	};
 
-	watch(localStorage.viewMode, (lsViewMode) => {
-		const isCorrectValue = (
-			Object.values(ViewMode)
-			.some((viewMode) => {
-				return viewMode === lsViewMode;
-			})
-		);
-		if (isCorrectValue) {
-			return;
-		}
-		localStorage.viewMode.value = DEFAULT_VIEW_MODE;
-	}, {
-		immediate: true,
-	});
+	// watch(localStorage.viewMode, (lsViewMode) => {
+	// 	const isCorrectValue = (
+	// 		Object.values(ViewMode)
+	// 		.some((viewMode) => {
+	// 			return viewMode === lsViewMode;
+	// 		})
+	// 	);
+	// 	if (isCorrectValue) {
+	// 		return;
+	// 	}
+	// 	localStorage.viewMode.value = DEFAULT_VIEW_MODE;
+	// }, {
+	// 	immediate: true,
+	// });
 
 	return localStorage;
 }

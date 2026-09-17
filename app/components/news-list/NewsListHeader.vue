@@ -4,7 +4,7 @@ import {
 	second,
 } from "#shared/constants/date";
 import {
-	FIRST_PAGE,
+	firstPage,
 } from "~~/shared/constants/pagination";
 const route = useRoute();
 
@@ -15,7 +15,7 @@ const debouncedFn = useDebounceFn((search: string) => {
 	void navigateTo({
 		name: "news-list",
 		params: {
-			page: FIRST_PAGE,
+			page: firstPage,
 		},
 		query: {
 			...route.query,

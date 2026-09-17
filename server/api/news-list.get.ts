@@ -9,7 +9,7 @@ import {
 	getCachedRssSourceList,
 } from "~~/server/utils/news-list/cache";
 import {
-	FIRST_PAGE,
+	firstPage,
 } from "~~/shared/constants/pagination";
 import {
 	calculateTotalPages,
@@ -90,7 +90,7 @@ export default defineEventHandler(async (
 	await getValidatedQuery(
 		event,
 		newListQueryMaxPageSchema({
-			totalPages: Math.max(totalPages, FIRST_PAGE),
+			totalPages: Math.max(totalPages, firstPage),
 		}).parse,
 	);
 	const paginatedNewsList = paginate({
