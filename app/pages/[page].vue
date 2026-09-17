@@ -4,16 +4,18 @@ import {
 } from "~/types";
 import {
 	firstPage,
-} from "~~/shared/constants/pagination";
+} from "~~/shared/constants/pagination.constants";
 import {
 	getNuxtH3ZodIssues,
 	isNuxtH3Error,
 	isNuxtH3ZodError,
 } from "~/utils/error.utils";
 import {
-	defaultViewMode,
 	useLocalStorage,
-} from "~/composables/local-storage";
+} from "~/composables/local-storage.composables";
+import {
+	localStorageDefaults,
+} from "~/constants/local-storage.constants";
 import NewsListFeed from "~/components/news-list/NewsListFeed.vue";
 import NewsListCards from "~/components/news-list/NewsListCards.vue";
 const isMounted = useMounted();
@@ -107,7 +109,7 @@ watch(error, (error) => {
 	>
 		<component
 			:is="componentIs"
-			v-if="isMounted ? mode === viewMode : mode === defaultViewMode"
+			v-if="isMounted ? mode === viewMode : mode === localStorageDefaults.viewMode"
 			:newsList
 		/>
 	</template>

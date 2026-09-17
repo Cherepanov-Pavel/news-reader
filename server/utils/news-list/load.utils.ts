@@ -7,7 +7,7 @@ import type {
 } from "~~/shared/mappers/rss-source.mappers";
 import {
 	getCachedResponseValidationResult,
-} from "~~/server/utils/news-list/cache";
+} from "~~/server/utils/news-list/cache.utils";
 
 async function loadNewsFromSource({
 	href,

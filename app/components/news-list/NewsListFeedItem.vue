@@ -4,7 +4,7 @@ import {
 } from "~/utils/date.utils";
 import type {
 	NewsListItem,
-} from "~~/shared/types/api/news";
+} from "~~/shared/types/api/news.types";
 interface Props {
 	newsListItem: NewsListItem;
 }

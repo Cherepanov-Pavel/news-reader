@@ -4,13 +4,13 @@ import {
 } from "~~/server/schemas/news-list.schemas";
 import {
 	loadNewsFromRssSourceList,
-} from "~~/server/utils/news-list/load";
+} from "~~/server/utils/news-list/load.utils";
 import {
 	getCachedRssSourceList,
-} from "~~/server/utils/news-list/cache";
+} from "~~/server/utils/news-list/cache.utils";
 import {
 	firstPage,
-} from "~~/shared/constants/pagination";
+} from "~~/shared/constants/pagination.constants";
 import {
 	calculateTotalPages,
 	paginate,

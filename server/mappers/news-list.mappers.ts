@@ -3,7 +3,7 @@ import type {
 } from "~~/server/types/news-list.types";
 import type {
 	NewsList,
-} from "~~/shared/types/api/news";
+} from "~~/shared/types/api/news.types";
 
 export function mapRssResponseToNewsList({
 	response, source,

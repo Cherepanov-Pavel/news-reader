@@ -2,10 +2,10 @@
 import IconRefresh from "~icons/figma/refresh";
 import {
 	second,
-} from "#shared/constants/date";
+} from "#shared/constants/date.constants";
 import {
 	firstPage,
-} from "~~/shared/constants/pagination";
+} from "~~/shared/constants/pagination.constants";
 const route = useRoute();
 
 const search = computed(() => {

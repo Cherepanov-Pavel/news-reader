@@ -1,6 +1,6 @@
 import type {
 	DateConstructorParameter, FrontendDateFormat,
-} from "~/types/date";
+} from "~/types/date.types";
 
 export const convertDateToFrontendDate = (date: DateConstructorParameter): FrontendDateFormat => {
 	const epochMilliseconds = (

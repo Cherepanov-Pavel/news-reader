@@ -11,7 +11,7 @@ vi.mock("~~/server/utils/news-list/cache", () => {
 });
 import {
 	loadNewsFromRssSourceList,
-} from "~~/server/utils/news-list/load";
+} from "~~/server/utils/news-list/load.utils";
 
 it("keeps news from sources that loaded successfully", async () => {
 	const loadNewsFromSourceFn = (

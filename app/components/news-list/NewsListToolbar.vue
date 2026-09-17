@@ -3,7 +3,7 @@ import IconViewCards from "~icons/figma/view-cards";
 import IconViewFeed from "~icons/figma/view-feed";
 import {
 	firstPage,
-} from "#shared/constants/pagination";
+} from "~~/shared/constants/pagination.constants";
 import {
 	ViewMode,
 } from "~/types";
@@ -15,10 +15,10 @@ import {
 } from "~~/shared/utils/string.utils";
 import {
 	useRssSourceListStore,
-} from "~/stores/rss-source-list";
+} from "~/stores/rss-source-list.stores";
 import {
 	useLocalStorage,
-} from "~/composables/local-storage";
+} from "~/composables/local-storage.composables";
 const {
 	rssSourceList,
 } = useRssSourceListStore();

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type {
 	NewsListItem,
-} from "~~/shared/types/api/news";
+} from "~~/shared/types/api/news.types";
 interface Props {
 	newsList: NewsListItem[];
 }

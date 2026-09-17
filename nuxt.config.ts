@@ -2,7 +2,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 import {
 	validateEnv,
-} from "./nuxt-config/utils/env-validation";
+} from "./nuxt-config/utils/env-validation.utils";
 import {
 	unpluginIconsModule,
 } from "./nuxt-config/unplugin-icons";
