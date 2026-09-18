@@ -6,11 +6,6 @@ import {
 	firstPage,
 } from "~~/shared/constants/pagination.constants";
 import {
-	getNuxtH3ZodIssues,
-	isNuxtH3Error,
-	isNuxtH3ZodError,
-} from "~/utils/error.utils";
-import {
 	useLocalStorage,
 } from "~/composables/local-storage.composables";
 import {
@@ -18,8 +13,11 @@ import {
 } from "~/constants/local-storage.constants";
 import NewsListFeed from "~/components/news-list/NewsListFeed.vue";
 import NewsListCards from "~/components/news-list/NewsListCards.vue";
-const isMounted = useMounted();
+import {
+	isInvalidNewsListPageError,
+} from "~/utils/news-list/error.utils";
 const route = useRoute();
+const isMounted = useMounted();
 
 definePageMeta({
 	name: "news-list",
@@ -28,33 +26,42 @@ useHead({
 	title: "Список новостей",
 });
 
-const viewModes = [
-	{
-		mode: ViewMode.Feed,
-		componentIs: NewsListFeed,
+const viewModeConfigs = {
+	[ViewMode.Feed]: {
+		component: NewsListFeed,
 	},
-	{
-		mode: ViewMode.Cards,
-		componentIs: NewsListCards,
+	[ViewMode.Cards]: {
+		component: NewsListCards,
 	},
-];
+};
 const {
 	viewMode,
 } = useLocalStorage();
+const activeViewMode = computed(() => {
+	if (isMounted.value) {
+		return viewMode.value;
+	}
+	return localStorageDefaults.viewMode;
+});
 
 const {
 	data,
 	error,
 } = await useFetch("/api/news-list", {
-	query: {
-		page: route.params.page,
-		source: computed(() => {
-			return route.query.source;
-		}),
-		search: computed(() => {
-			return route.query.search;
-		}),
-	},
+	query: computed(() => {
+		const {
+			page,
+		} = route.params;
+		const {
+			source,
+			search,
+		} = route.query;
+		return {
+			page,
+			source,
+			search,
+		};
+	}),
 });
 const newsList = computed(() => {
 	return data.value?.items ?? [];
@@ -63,24 +70,8 @@ watch(error, (error) => {
 	if (!error) {
 		return;
 	}
-	if (
-		!isNuxtH3Error(error)
-		|| !isNuxtH3ZodError(error)
-		|| !(error.status === 400)
-	) {
+	if (!isInvalidNewsListPageError(error)) {
 		throw error;
-	}
-
-	const parsed = getNuxtH3ZodIssues(error);
-	const isPageProblem = parsed.some(({
-		path,
-	}) => {
-		return path.some((pathItem) => {
-			return pathItem === "page";
-		});
-	});
-	if (!isPageProblem) {
-		return;
 	}
 	void navigateTo({
 		name: "news-list",
@@ -100,19 +91,10 @@ watch(error, (error) => {
 	<NewsListToolbar
 		class="mb-7"
 	/>
-	<template
-		v-for="{
-			mode,
-			componentIs,
-		} in viewModes"
-		:key="mode"
-	>
-		<component
-			:is="componentIs"
-			v-if="isMounted ? mode === viewMode : mode === localStorageDefaults.viewMode"
-			:newsList
-		/>
-	</template>
+	<component
+		:is="viewModeConfigs[activeViewMode].component"
+		:newsList
+	/>
 	<AppPagination
 		:totalPages="data?.totalPages"
 	/>

@@ -14,21 +14,21 @@ export function useLocalStorage() {
 			"viewMode",
 			localStorageDefaults.viewMode,
 		),
-
-		clear: (clearKeys: string[]) => {
-			(
-				Object.keys(localStorage) as (keyof typeof localStorage)[]
-			).forEach((key) => {
-				if (key === "clear") {
-					return;
-				}
-				if (!clearKeys.includes(key)) {
-					return;
-				}
-				localStorage[key].value = null;
-			});
-		},
 	};
 
-	return localStorage;
+	type LocalStorageKeyList = (keyof typeof localStorage)[];
+	function resetToDefaults(resetKeys?: LocalStorageKeyList) {
+		(Object.keys(localStorage) as LocalStorageKeyList).forEach((key) => {
+			if (resetKeys && !resetKeys.includes(key)) {
+				return;
+			}
+
+			localStorage[key].value = null;
+		});
+	}
+
+	return {
+		...localStorage,
+		resetToDefaults,
+	};
 }

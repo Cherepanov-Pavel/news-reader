@@ -3,6 +3,7 @@ import {
 } from "~/composables/local-storage.composables";
 import {
 	localStorageDefaults,
+	localStorageDefaultsKeys,
 } from "~/constants/local-storage.constants";
 import {
 	localStorageSchema,
@@ -14,12 +15,9 @@ export default defineNuxtPlugin(() => {
 
 function normalizeLocalStorage() {
 	const localStorage = useLocalStorage();
-	const values = {
-		viewMode: localStorage.viewMode.value,
-	};
+	const values = reactive(localStorage);
 
-	(Object.keys(localStorageDefaults) as (keyof typeof localStorageDefaults)[])
-	.forEach((key) => {
+	localStorageDefaultsKeys.forEach((key) => {
 		const result = localStorageSchema.shape[key].safeParse(values[key]);
 		if (result.success) {
 			return;

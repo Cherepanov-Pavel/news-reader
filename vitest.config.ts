@@ -14,9 +14,18 @@ export default defineConfig({
 				test: {
 					name: "unit",
 					include: [
-						"test/unit/**/*.{test,spec}.ts",
+						"test/unit/server/**/*.{test,spec}.ts",
 					],
 					environment: "node",
+				},
+			},
+			{
+				test: {
+					name: "app",
+					include: [
+						"test/unit/app/**/*.{test,spec}.ts",
+					],
+					environment: "jsdom",
 				},
 			},
 		],
@@ -24,6 +33,7 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			"~~": rootDir,
+			"~": `${rootDir}/app`,
 		},
 	},
 });

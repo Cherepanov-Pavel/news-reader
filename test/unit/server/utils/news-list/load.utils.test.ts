@@ -4,7 +4,7 @@ import {
 	vi,
 } from "vitest";
 
-vi.mock("~~/server/utils/news-list/cache", () => {
+vi.mock("~~/server/utils/news-list/cache.utils", () => {
 	return {
 		getCachedResponseValidationResult: vi.fn(),
 	};

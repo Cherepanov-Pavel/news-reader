@@ -1,3 +1,6 @@
+<script setup lang="ts">
+</script>
+
 <template>
 	<div
 		class="relative min-h-screen bg-[#FBFBFB] font-arial"

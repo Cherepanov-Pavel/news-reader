@@ -1,13 +1,10 @@
-import type {
-	localStorageSchema,
-} from "~/schemas/local-storage.schemas";
-import type {
-	z,
-} from "zod";
 import {
 	ViewMode,
 } from "~/types";
 
-export const localStorageDefaults: z.infer<typeof localStorageSchema> = {
+export const localStorageDefaults = {
 	viewMode: ViewMode.Cards,
 };
+export const localStorageDefaultsKeys = (
+	Object.keys(localStorageDefaults) as (keyof typeof localStorageDefaults)[]
+);
