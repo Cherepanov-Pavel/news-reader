@@ -2,13 +2,10 @@ import tailwindcss from "@tailwindcss/vite";
 
 import {
 	validateEnv,
-} from "./nuxt-config/utils/env-validation.utils";
+} from "./nuxt-config/modules/env-validation.modules";
 import {
-	unpluginIconsModule,
-} from "./nuxt-config/unplugin-icons";
-
-validateEnv();
-
+	unpluginIcons,
+} from "./nuxt-config/modules/unplugin-icons.modules";
 
 export default defineNuxtConfig({
 	runtimeConfig: {
@@ -44,8 +41,9 @@ export default defineNuxtConfig({
 	modules: [
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
-		unpluginIconsModule,
 		"@nuxt/test-utils/module",
+		unpluginIcons,
+		validateEnv,
 	],
 	// https://nuxt.com/docs/4.x/guide/concepts/auto-imports#partially-disabling-auto-imports
 	// https://github.com/nuxt/nuxt/issues/29923

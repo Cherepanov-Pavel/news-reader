@@ -13,7 +13,7 @@ const transform: ResolvedOptions["transform"] = (svg) => {
 		.replaceAll(/fill=".+"/ug, "fill=\"currentColor\"")
 	);
 };
-export const unpluginIconsModule = [
+export const unpluginIcons = [
 	// makes available ~icons/ import
 	"unplugin-icons/nuxt",
 	{
