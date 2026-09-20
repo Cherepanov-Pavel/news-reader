@@ -1,22 +1,25 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="EmptyValue extends '' | undefined | null = undefined">
 defineOptions({
 	inheritAttrs: false,
 });
 const attrs = useAttrs();
 
 interface Props {
-	emptyAsString?: boolean;
+	emptyValue?: EmptyValue;
 }
 const {
-	emptyAsString,
+	emptyValue,
 } = defineProps<Props>();
 
-const model = defineModel<string>({
+
+// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+const model = defineModel<string | NoInfer<EmptyValue>>({
+	required: true,
 	set(value) {
-		if (value || emptyAsString) {
+		if (value) {
 			return value;
 		}
-		return undefined;
+		return emptyValue;
 	},
 });
 </script>
