@@ -4,8 +4,20 @@ defineOptions({
 });
 const attrs = useAttrs();
 
+interface Props {
+	emptyAsString?: boolean;
+}
+const {
+	emptyAsString,
+} = defineProps<Props>();
+
 const model = defineModel<string>({
-	default: "",
+	set(value) {
+		if (value || emptyAsString) {
+			return value;
+		}
+		return undefined;
+	},
 });
 </script>
 

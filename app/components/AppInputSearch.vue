@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import IconMagnifyingGlass from "~icons/figma/magnifying-glass";
 
-
-const model = defineModel<string>({
-	default: "",
-});
+const model = defineModel<string>();
 </script>
 
 <template>
