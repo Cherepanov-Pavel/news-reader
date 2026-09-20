@@ -15,9 +15,9 @@ type NuxtH3ZodError = NuxtError<H3Error<{
 }>>;
 
 export function isNuxtH3Error(
-	error: MaybeRef<NuxtError | undefined>,
+	error: MaybeRef<NuxtError>,
 ): error is MaybeRef<NuxtH3Error> {
-	const errorData = unref(error)?.data;
+	const errorData = unref(error).data;
 	return (
 		typeof errorData === "object"
 		&& errorData !== null
@@ -29,8 +29,12 @@ export function isNuxtH3Error(
 }
 
 export function isNuxtH3ZodError(
-	error: MaybeRef<NuxtH3Error>,
+	error: MaybeRef<NuxtError>,
 ): error is MaybeRef<NuxtH3ZodError> {
+	if (!isNuxtH3Error(error)) {
+		return false;
+	}
+
 	const {
 		data,
 	} = unref(error).data!;
@@ -45,8 +49,11 @@ export function isNuxtH3ZodError(
 }
 
 export function getNuxtH3ZodIssues(
-	error: MaybeRef<NuxtH3ZodError>,
-): ZodError["issues"] {
+	error: MaybeRef<NuxtError>,
+) {
+	if (!isNuxtH3ZodError(error)) {
+		return;
+	}
 	const {
 		message,
 	} = (unref(error).data!.data!);

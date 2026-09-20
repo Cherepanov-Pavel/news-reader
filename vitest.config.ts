@@ -4,8 +4,19 @@ import {
 import {
 	defineConfig,
 } from "vitest/config";
+import {
+	defineVitestProject,
+} from "@nuxt/test-utils/config";
+import {
+	loadEnv,
+} from "vite";
+
 const rootDir = fileURLToPath(
 	new URL(".", import.meta.url),
+);
+Object.assign(
+	process.env,
+	loadEnv("development", rootDir, ""),
 );
 export default defineConfig({
 	test: {
@@ -25,9 +36,18 @@ export default defineConfig({
 					include: [
 						"test/unit/app/**/*.{test,spec}.ts",
 					],
-					environment: "jsdom",
+					environment: "happy-dom",
 				},
 			},
+			await defineVitestProject({
+				test: {
+					name: "nuxt",
+					include: [
+						"test/nuxt/*.{test,spec}.ts",
+					],
+					environment: "nuxt",
+				},
+			}),
 		],
 	},
 	resolve: {

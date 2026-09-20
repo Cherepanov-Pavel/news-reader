@@ -3,21 +3,22 @@ import type {
 } from "#app";
 import {
 	getNuxtH3ZodIssues,
-	isNuxtH3Error, isNuxtH3ZodError,
 } from "~/utils/error.utils";
 
 export function isInvalidNewsListPageError(
-	error: NuxtError | undefined,
+	error: NuxtError,
 ): boolean {
 	if (
-		!isNuxtH3Error(error)
-		|| !isNuxtH3ZodError(error)
-		|| error.status !== 400
+		error.status !== 400
 	) {
 		return false;
 	}
 
 	const issues = getNuxtH3ZodIssues(error);
+
+	if (!issues) {
+		return false;
+	}
 
 	return issues.some(({
 		path,

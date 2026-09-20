@@ -3,15 +3,15 @@ import {
 	it,
 	vi,
 } from "vitest";
+import {
+	loadNewsFromRssSourceList,
+} from "~~/server/utils/news-list/load.utils";
 
 vi.mock("~~/server/utils/news-list/cache.utils", () => {
 	return {
 		getCachedResponseValidationResult: vi.fn(),
 	};
 });
-import {
-	loadNewsFromRssSourceList,
-} from "~~/server/utils/news-list/load.utils";
 
 it("keeps news from sources that loaded successfully", async () => {
 	const loadNewsFromSourceFn = (
