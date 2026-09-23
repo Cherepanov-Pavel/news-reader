@@ -22,11 +22,11 @@ const items = [
 	},
 ];
 
-const selectDate = ({
+function selectDate({
 	date,
-}: (typeof items)[number]) => {
+}: (typeof items)[number]) {
 	return date;
-};
+}
 
 describe("sortByDate", () => {
 	it("sorts items by date in ascending order by default", () => {

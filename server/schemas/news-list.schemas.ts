@@ -5,11 +5,11 @@ import type {
 	RssSourceList,
 } from "~~/shared/mappers/rss-source.mappers";
 
-export const newListQuerySchema = ({
+export function newListQuerySchema({
 	rssSourceList,
 }: {
 	rssSourceList: RssSourceList;
-}) => {
+}) {
 	return (
 		z
 		.object({
@@ -44,12 +44,12 @@ export const newListQuerySchema = ({
 			),
 		})
 	);
-};
-export const newListQueryMaxPageSchema = ({
+}
+export function newListQueryMaxPageSchema({
 	totalPages,
 }: {
 	totalPages: number;
-}) => {
+}) {
 	return (
 		z
 		.object({
@@ -61,7 +61,7 @@ export const newListQueryMaxPageSchema = ({
 			),
 		})
 	);
-};
+}
 
 const enclosureSchema = z.object({
 	url: z.string(),

@@ -22,15 +22,15 @@ const items = [
 	},
 ];
 
-const getSearchableWords = ({
+function getSearchableWords({
 	name,
 	category,
-}: (typeof items)[number]) => {
+}: (typeof items)[number]) {
 	return [
 		name,
 		category,
 	];
-};
+}
 
 describe("filterBySearch", () => {
 	it("returns all items for an empty search", () => {

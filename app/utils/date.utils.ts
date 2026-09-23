@@ -2,7 +2,7 @@ import type {
 	DateConstructorParameter, FrontendDateFormat,
 } from "~/types/date.types";
 
-export const convertDateToFrontendDate = (date: DateConstructorParameter): FrontendDateFormat => {
+export function convertDateToFrontendDate(date: DateConstructorParameter): FrontendDateFormat {
 	const epochMilliseconds = (
 		new Date(date)
 		.getTime()
@@ -22,4 +22,4 @@ export const convertDateToFrontendDate = (date: DateConstructorParameter): Front
 	});
 
 	return formatter.format(plainDateTime) as FrontendDateFormat;
-};
+}

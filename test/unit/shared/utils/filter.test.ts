@@ -22,11 +22,11 @@ const items = [
 	},
 ];
 
-const getCategory = ({
+function getCategory({
 	category,
-}: (typeof items)[number]) => {
+}: (typeof items)[number]) {
 	return category;
-};
+}
 
 describe("filterByValue", () => {
 	it("returns items with the selected value", () => {
