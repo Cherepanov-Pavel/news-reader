@@ -20,13 +20,22 @@ const {
 );
 
 const isH3Error = computed(() => {
-	return isNuxtH3Error(error);
+	if (!error.value) {
+		return false;
+	}
+	return isNuxtH3Error(error.value);
 });
 const isZodError = computed(() => {
-	return isNuxtH3ZodError(error);
+	if (!error.value) {
+		return false;
+	}
+	return isNuxtH3ZodError(error.value);
 });
 const issues = computed(() => {
-	return getNuxtH3ZodIssues(error);
+	if (!error.value) {
+		return false;
+	}
+	return getNuxtH3ZodIssues(error.value);
 });
 </script>
 
