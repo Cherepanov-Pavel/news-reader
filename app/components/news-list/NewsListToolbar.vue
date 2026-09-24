@@ -19,13 +19,12 @@ import {
 import {
 	useLocalStorage,
 } from "~/composables/local-storage.composables";
-const {
-	rssSourceList,
-} = useRssSourceListStore();
-
 const route = useRoute();
 const isMounted = useMounted();
 
+const {
+	rssSourceList,
+} = useRssSourceListStore();
 const sourceLinks = [
 	{
 		label: "Все",

@@ -43,7 +43,29 @@ const activeViewMode = computed(() => {
 	}
 	return localStorageDefaults.viewMode;
 });
-
+// const newsListQuery = {
+// 	search: computed({
+// 		get() {
+// 			return route.query.search?.toString();
+// 		},
+// 		set: useDebounceFn(
+// 			(search?: string) => {
+// 				void navigateTo({
+// 					name: "news-list",
+// 					params: {
+// 						page: firstPage,
+// 					},
+// 					query: {
+// 						...route.query,
+// 						search: search?.trim(),
+// 					},
+// 				});
+// 			},
+// 			1.5 * second,
+// 		),
+// 	}),
+// 	source:
+// };
 const {
 	data,
 	error,
@@ -66,13 +88,11 @@ const {
 const newsList = computed(() => {
 	return data.value?.items ?? [];
 });
-watch(error, (error) => {
-	if (!error) {
-		return;
-	}
+whenever(error, (error) => {
 	if (!isInvalidNewsListPageError(error)) {
 		throw error;
 	}
+
 	void navigateTo({
 		name: "news-list",
 		params: {
@@ -80,8 +100,6 @@ watch(error, (error) => {
 		},
 		query: route.query,
 	});
-}, {
-	immediate: true,
 });
 </script>
 

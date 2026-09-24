@@ -11,18 +11,21 @@ const route = useRoute();
 const search = computed(() => {
 	return route.query.search?.toString();
 });
-const debouncedFn = useDebounceFn((search: string) => {
-	void navigateTo({
-		name: "news-list",
-		params: {
-			page: firstPage,
-		},
-		query: {
-			...route.query,
-			search: search.trim() || undefined,
-		},
-	});
-}, 1.5 * second);
+const debouncedFn = useDebounceFn(
+	(search?: string) => {
+		void navigateTo({
+			name: "news-list",
+			params: {
+				page: firstPage,
+			},
+			query: {
+				...route.query,
+				search: search?.trim(),
+			},
+		});
+	},
+	1.5 * second,
+);
 </script>
 
 <template>
