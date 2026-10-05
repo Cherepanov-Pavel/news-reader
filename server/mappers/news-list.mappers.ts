@@ -24,7 +24,7 @@ export function mapRssResponseToNewsList({
 			link,
 			pubDate,
 			enclosure: {
-				url: enclosure?.[0]?.url,
+				url: enclosure?.[0]?.url ?? "",
 			},
 			source,
 		};

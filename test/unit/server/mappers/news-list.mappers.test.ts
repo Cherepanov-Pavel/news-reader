@@ -53,7 +53,7 @@ describe("mapRssResponseToNewsList", () => {
 		]);
 	});
 
-	it("uses empty text and no enclosure URL when optional fields are absent", () => {
+	it("uses empty text when optional fields are absent", () => {
 		const response: RssResponse = {
 			rss: {
 				channel: {
@@ -79,7 +79,9 @@ describe("mapRssResponseToNewsList", () => {
 				description: "",
 				link: "https://example.com/news",
 				pubDate: "2026-09-14T10:00:00.000Z",
-				enclosure: {},
+				enclosure: {
+					url: "",
+				},
 				source: "example.com",
 			},
 		]);

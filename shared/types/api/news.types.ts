@@ -4,7 +4,7 @@ export interface NewsListItem {
 	link: string;
 	pubDate: string;
 	enclosure: {
-		url?: string;
+		url: string;
 	};
 	source: string;
 }
