@@ -2,9 +2,6 @@
 import IconViewCards from "~icons/figma/view-cards";
 import IconViewFeed from "~icons/figma/view-feed";
 import {
-	firstPage,
-} from "~~/shared/constants/pagination.constants";
-import {
 	ViewMode,
 } from "~/types";
 import {
@@ -19,9 +16,15 @@ import {
 import {
 	useLocalStorage,
 } from "~/composables/local-storage.composables";
-const route = useRoute();
+import {
+	useNewsListRoute,
+} from "~/composables/news-list-route.composables";
 const isMounted = useMounted();
 
+const {
+	source: routeSource,
+	toNewsList,
+} = useNewsListRoute();
 const {
 	rssSourceList,
 } = useRssSourceListStore();
@@ -71,18 +74,11 @@ const viewModeBtns = [
 			>
 				<NuxtLink
 					:class="{
-						'text-primary': route.query.source !== source,
+						'text-primary': source !== routeSource,
 					}"
-					:to="{
-						name: `news-list`,
-						params: {
-							page: firstPage,
-						},
-						query: {
-							...route.query,
-							source,
-						},
-					}"
+					:to="toNewsList({
+						source,
+					})"
 				>
 					{{ label }}
 				</NuxtLink>

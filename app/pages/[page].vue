@@ -16,11 +16,14 @@ import NewsListCards from "~/components/news-list/NewsListCards.vue";
 import {
 	isInvalidNewsListPageError,
 } from "~/utils/news-list/error.utils";
-const route = useRoute();
+import {
+	newsListRouteName,
+	useNewsListRoute,
+} from "~/composables/news-list-route.composables";
 const isMounted = useMounted();
 
 definePageMeta({
-	name: "news-list",
+	name: newsListRouteName,
 });
 useHead({
 	title: "Список новостей",
@@ -43,63 +46,38 @@ const activeViewMode = computed(() => {
 	}
 	return localStorageDefaults.viewMode;
 });
-// const newsListQuery = {
-// 	search: computed({
-// 		get() {
-// 			return route.query.search?.toString();
-// 		},
-// 		set: useDebounceFn(
-// 			(search?: string) => {
-// 				void navigateTo({
-// 					name: "news-list",
-// 					params: {
-// 						page: firstPage,
-// 					},
-// 					query: {
-// 						...route.query,
-// 						search: search?.trim(),
-// 					},
-// 				});
-// 			},
-// 			1.5 * second,
-// 		),
-// 	}),
-// 	source:
-// };
+
+const {
+	toNewsList,
+	page,
+	source,
+	search,
+} = useNewsListRoute();
 const {
 	data,
 	error,
 } = await useFetch("/api/news-list", {
 	query: computed(() => {
-		const {
-			page,
-		} = route.params;
-		const {
-			source,
-			search,
-		} = route.query;
-		return {
+		return reactive({
 			page,
 			source,
 			search,
-		};
+		});
 	}),
 });
 const newsList = computed(() => {
 	return data.value?.items ?? [];
 });
-whenever(error, (error) => {
-	if (!isInvalidNewsListPageError(error)) {
-		throw error;
+whenever(error, async (error) => {
+	if (isInvalidNewsListPageError(error)) {
+		await navigateTo(
+			toNewsList({
+				page: firstPage,
+			}),
+		);
 	}
-
-	void navigateTo({
-		name: "news-list",
-		params: {
-			page: firstPage,
-		},
-		query: route.query,
-	});
+}, {
+	immediate: true,
 });
 </script>
 

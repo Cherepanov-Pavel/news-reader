@@ -4,25 +4,21 @@ import {
 	second,
 } from "#shared/constants/date.constants";
 import {
-	firstPage,
-} from "~~/shared/constants/pagination.constants";
-const route = useRoute();
+	useNewsListRoute,
+} from "~/composables/news-list-route.composables";
 
-const search = computed(() => {
-	return route.query.search?.toString();
-});
+const {
+	search,
+	toNewsList,
+	toDefaultNewsList,
+} = useNewsListRoute();
 const debouncedFn = useDebounceFn(
 	(search?: string) => {
-		void navigateTo({
-			name: "news-list",
-			params: {
-				page: firstPage,
-			},
-			query: {
-				...route.query,
-				search: search?.trim(),
-			},
-		});
+		void navigateTo(
+			toNewsList({
+				search,
+			}),
+		);
 	},
 	1.5 * second,
 );
@@ -42,9 +38,7 @@ const debouncedFn = useDebounceFn(
 			</h1>
 			<AppLink
 				class="ml-auto rounded-full px-2.5 py-3 shadow-sm"
-				:to="{
-					name: 'news-list',
-				}"
+				:to="toDefaultNewsList()"
 			>
 				<IconRefresh
 					class="h-4 w-5 text-primary"
