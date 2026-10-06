@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
 
+const routeParamName = "page";
 interface Props {
 	totalPages?: number;
 }
@@ -10,7 +11,7 @@ const {
 
 
 const currentPage = computed(() => {
-	return Number(route.params.page);
+	return Number(route.params[routeParamName]);
 });
 const pages = computed(() => {
 	if (totalPages <= 5) {
@@ -80,12 +81,12 @@ const pages = computed(() => {
 				<NuxtLink
 					v-if="page !== '...'"
 					:class="[
-						currentPage === page ? 'text-primary' : 'hover:text-primary',
+						page === currentPage ? 'text-primary' : 'hover:text-primary',
 					]"
 					:to="{
-						name: `news-list`,
 						params: {
-							page,
+							...route.params,
+							[routeParamName]: page,
 						},
 						query: route.query,
 					}"
