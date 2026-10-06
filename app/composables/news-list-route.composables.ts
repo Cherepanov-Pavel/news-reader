@@ -8,8 +8,8 @@ import {
 export const newsListRouteName = "news-list";
 interface NewsListRoutePatch {
 	page?: number;
-	search?: string | null;
-	source?: string | null;
+	search?: string;
+	source?: string;
 }
 export function useNewsListRoute() {
 	const route = useRoute();
@@ -32,8 +32,8 @@ export function useNewsListRoute() {
 	function toDefaultNewsList() {
 		return toNewsList({
 			page: firstPage,
-			search: null,
-			source: null,
+			search: undefined,
+			source: undefined,
 		});
 	}
 	function toNewsList(patch: NewsListRoutePatch = {}): RouteLocationRaw {
@@ -50,14 +50,14 @@ export function useNewsListRoute() {
 	}
 	function toQuery(patch: NewsListRoutePatch): LocationQueryRaw {
 		const nextSearch = (
-			patch.search === undefined
-				? search.value
-				: patch.search?.trim() || undefined
+			"search" in patch
+				? patch.search?.trim() || undefined
+				: search.value
 		);
 		const nextSource = (
-			patch.source === undefined
-				? source.value
-				: patch.source || undefined
+			"source" in patch
+				? patch.source
+				: source.value
 		);
 		return {
 			search: nextSearch,
